@@ -23,13 +23,13 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px}
 
 /* header */
-.p-header{background:var(--dark);border-bottom:1px solid var(--line-dark);padding:18px 0}
+.p-header{background:var(--bg);border-bottom:1px solid var(--line);padding:14px 0}
 .p-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
-.p-header .logo{display:inline-flex;background:var(--bg);padding:7px 12px;border-radius:4px}
-.p-header .logo img{height:44px;width:auto}
-.p-header .hright{display:flex;align-items:center;gap:22px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(239,233,219,.7)}
-.p-header .hright a:hover{color:var(--ink-dark)}
-.p-header .who{color:var(--muted-dark);letter-spacing:.04em;text-transform:none;font-size:.82rem;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.p-header .logo{display:inline-flex}
+.p-header .logo img{height:48px;width:auto}
+.p-header .hright{display:flex;align-items:center;gap:22px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.p-header .hright a:hover{color:var(--ink)}
+.p-header .who{color:var(--muted);letter-spacing:.04em;text-transform:none;font-size:.82rem;max-width:260px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 @media(max-width:640px){.p-header .who{display:none}.p-header .hright{gap:14px}}
 
 /* type */
