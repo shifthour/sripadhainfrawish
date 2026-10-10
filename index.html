@@ -307,11 +307,13 @@
   /* ============ ABOUT ============ */
   .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:start}
   .about-quote{
-    display:flex;flex-direction:column;font-family:var(--serif);
-    border-left:1px solid var(--accent-line);padding-left:28px;margin:34px 0;line-height:1.15;
+    --rq:clamp(1rem,1.75vw,1.35rem);
+    display:flex;align-items:center;gap:22px;font-family:var(--serif);
+    border-left:1px solid var(--accent-line);padding-left:28px;margin:34px 0;
   }
-  .about-quote .rq-lead{font-size:clamp(2.2rem,4vw,3.2rem);font-style:italic;font-weight:400;color:var(--ink);margin-bottom:10px}
-  .about-quote .rq-word{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:500;letter-spacing:.01em;line-height:1.3}
+  .about-quote .rq-lead{font-size:calc(var(--rq) * 3.3);line-height:1;font-style:italic;font-weight:400;color:var(--ink);white-space:nowrap}
+  .about-quote .rq-stack{display:flex;flex-direction:column;justify-content:space-between;align-self:stretch;padding-left:22px;border-left:1px solid var(--accent-line)}
+  .about-quote .rq-word{font-size:var(--rq);line-height:1.15;font-weight:500;letter-spacing:.04em;text-transform:uppercase}
   .about-quote .rq-1{color:var(--accent)}
   .about-quote .rq-2{color:var(--success)}
   .about-quote .rq-3{color:var(--ink)}
@@ -746,9 +748,11 @@
         <h2 class="display reveal" data-delay="1">The city's new chapter is unfolding,<br><em>let's shape it together.</em></h2>
         <div class="about-quote reveal" data-delay="2" aria-label="The right land, the right location, the right people">
           <span class="rq-lead">The right</span>
-          <span class="rq-word rq-1">Land.</span>
-          <span class="rq-word rq-2">Location.</span>
-          <span class="rq-word rq-3">People.</span>
+          <span class="rq-stack">
+            <span class="rq-word rq-1">Land.</span>
+            <span class="rq-word rq-2">Location.</span>
+            <span class="rq-word rq-3">People.</span>
+          </span>
         </div>
         <p class="reveal" data-delay="3">Sripadha Infrawish brings together like-minded investors to identify, evaluate and participate in strategically located land and real-estate opportunities in and around Bengaluru.</p>
         <p class="reveal" data-delay="4">Strategic land parcels are often out of reach for a single buyer, and hard to evaluate without local knowledge. We solve both — combining on-ground location intelligence with a disciplined, documentation-first process, and the collective strength of an investor community that shares a long-term vision.</p>
