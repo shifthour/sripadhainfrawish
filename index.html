@@ -270,11 +270,6 @@
     margin-bottom:44px;animation-delay:.85s;
   }
   .hero-ctas{display:flex;gap:18px;flex-wrap:wrap;animation-delay:1.05s}
-  .hero-metrics{
-    display:flex;gap:56px;margin-top:64px;animation-delay:1.2s;
-  }
-  .hero-metrics b{font-family:var(--serif);font-size:1.75rem;color:var(--ink-dark);font-weight:500;display:block;line-height:1.15}
-  .hero-metrics span{font-size:.64rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted-dark)}
   .scroll-hint{
     position:absolute;bottom:36px;left:50%;transform:translateX(-50%);z-index:3;
     color:var(--muted-dark);font-size:.6rem;letter-spacing:.34em;text-transform:uppercase;
@@ -285,9 +280,6 @@
   @keyframes drip{0%{transform:scaleY(0);transform-origin:top}55%{transform:scaleY(1);transform-origin:top}56%{transform-origin:bottom}100%{transform:scaleY(0);transform-origin:bottom}}
   @media(max-width:760px){
     .hero{padding:130px 0 110px}
-    .hero-metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:18px;margin-top:52px}
-    .hero-metrics b{font-size:1.35rem}
-    .hero-metrics span{font-size:.56rem;letter-spacing:.14em}
     .hero-tag{font-size:.58rem;letter-spacing:.24em}
     .btn{width:100%;max-width:360px}
     .hero-ctas{flex-direction:column}
@@ -702,12 +694,6 @@
     <div class="hero-ctas hero-anim">
       <a href="#opportunities" class="btn btn-solid">Explore Opportunities <span class="ar">→</span></a>
       <a href="#invest" class="btn btn-line">Become an Investor</a>
-    </div>
-    <div class="hero-metrics hero-anim" aria-label="Company statistics">
-      <div><b>1,000+</b><span>Investors</span></div>
-      <div><b>100+</b><span>Acres Procured</span></div>
-      <div><b>10+</b><span>Projects</span></div>
-      <div><b>10+</b><span>Builders</span></div>
     </div>
   </div>
   <div class="scroll-hint" aria-hidden="true">Scroll to Explore</div>
