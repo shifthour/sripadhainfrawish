@@ -25,6 +25,7 @@ input,select,textarea{font-family:inherit;font-size:1rem}
 /* header */
 .p-header{background:var(--dark);border-bottom:1px solid var(--line-dark);padding:18px 0}
 .p-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px}
+.p-header .logo{display:inline-flex;background:var(--bg);padding:7px 12px;border-radius:4px}
 .p-header .logo img{height:44px;width:auto}
 .p-header .hright{display:flex;align-items:center;gap:22px;font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(239,233,219,.7)}
 .p-header .hright a:hover{color:var(--ink-dark)}
