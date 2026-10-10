@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Investor Login — Sripadha Infrawish</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23ffffff'/%3E%3Cpath d='M16 6 6 14v11h7v-7h6v7h7V14L16 6z' fill='none' stroke='%2324409a' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M5 27h22' stroke='%23e5a62a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/portal.css">
+</head>
+<body class="auth">
+
+<header class="p-header">
+  <div class="wrap">
+    <a href="/" class="logo" aria-label="Sripadha Infrawish home"><img src="/logo-on-dark.png" alt="Sripadha Infrawish" width="760" height="190"></a>
+    <nav class="hright"><a href="/">← Back to site</a></nav>
+  </div>
+</header>
+
+<main class="auth-main">
+  <div>
+    <div class="auth-card">
+      <div class="kicker">Existing Investors</div>
+
+      <!-- SIGN IN -->
+      <form id="signinForm" novalidate>
+        <h1>Welcome <em>back.</em></h1>
+        <p class="lead">Sign in to view and update your investor profile.</p>
+        <div class="notice" id="notice" hidden role="alert"></div>
+        <div class="fields">
+          <div class="field full"><label for="si-email">Email</label><input id="si-email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
+          <div class="field full"><label for="si-pass">Password</label><input id="si-pass" type="password" required autocomplete="current-password" placeholder="••••••••"></div>
+        </div>
+        <button class="btn btn-solid" type="submit" style="width:100%;margin-top:26px">Sign In</button>
+        <div class="auth-links">
+          <button type="button" class="linkbtn" data-show="resetForm">Forgot password?</button>
+          <button type="button" class="linkbtn" data-show="signupForm">First time here? Create account</button>
+        </div>
+      </form>
+
+      <!-- SIGN UP -->
+      <form id="signupForm" hidden novalidate>
+        <h1>Create your <em>account.</em></h1>
+        <p class="lead">Use the email you shared with Sripadha Infrawish so we can link your investments.</p>
+        <div class="notice" id="notice2" hidden role="alert"></div>
+        <div class="fields">
+          <div class="field full"><label for="su-name">Full name</label><input id="su-name" type="text" required autocomplete="name" placeholder="As on your PAN card"></div>
+          <div class="field full"><label for="su-email">Email</label><input id="su-email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
+          <div class="field full"><label for="su-pass">Password</label><input id="su-pass" type="password" required minlength="8" autocomplete="new-password" placeholder="Minimum 8 characters"></div>
+          <div class="field full"><label for="su-pass2">Confirm password</label><input id="su-pass2" type="password" required minlength="8" autocomplete="new-password" placeholder="Repeat password"></div>
+        </div>
+        <button class="btn btn-solid" type="submit" style="width:100%;margin-top:26px">Create Account</button>
+        <div class="auth-links">
+          <button type="button" class="linkbtn" data-show="signinForm">Already have an account? Sign in</button>
+        </div>
+      </form>
+
+      <!-- RESET -->
+      <form id="resetForm" hidden novalidate>
+        <h1>Reset <em>password.</em></h1>
+        <p class="lead">Enter your email and we'll send you a link to set a new password.</p>
+        <div class="notice" id="notice3" hidden role="alert"></div>
+        <div class="fields">
+          <div class="field full"><label for="rs-email">Email</label><input id="rs-email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
+        </div>
+        <button class="btn btn-solid" type="submit" style="width:100%;margin-top:26px">Send Reset Link</button>
+        <div class="auth-links">
+          <button type="button" class="linkbtn" data-show="signinForm">← Back to sign in</button>
+        </div>
+      </form>
+    </div>
+    <div class="sig">SRIPADHA INFRAWISH<span>Land · Trust · Together</span></div>
+  </div>
+</main>
+
+<footer class="p-footer"><div class="wrap"><p>© <span id="year"></span> Sripadha Infrawish</p><p>Investor portal · Secure sign-in</p></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+<script src="/assets/supabase-config.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+const cfg = window.SRIPADHA_SUPABASE || {};
+const forms = ['signinForm','signupForm','resetForm'].map(id => document.getElementById(id));
+const notices = { signinForm:'notice', signupForm:'notice2', resetForm:'notice3' };
+const PORTAL = '/portal';
+
+function show(id){
+  forms.forEach(f => f.hidden = f.id !== id);
+  forms.forEach(f => say(f.id, ''));
+  const first = document.getElementById(id).querySelector('input');
+  if (first) first.focus();
+}
+function say(formId, msg, kind){
+  const el = document.getElementById(notices[formId]);
+  el.hidden = !msg; el.textContent = msg || '';
+  el.className = 'notice' + (kind ? ' ' + kind : '');
+}
+function busy(form, on){
+  const b = form.querySelector('button[type=submit]');
+  b.disabled = on; b.dataset.label = b.dataset.label || b.textContent;
+  b.textContent = on ? 'Please wait…' : b.dataset.label;
+}
+document.querySelectorAll('[data-show]').forEach(b => b.addEventListener('click', () => show(b.dataset.show)));
+
+if (!cfg.url || !cfg.anonKey){
+  forms.forEach(f => f.querySelectorAll('input,button').forEach(el => el.disabled = true));
+  say('signinForm', 'The investor portal is being activated. Please check back shortly.', '');
+} else {
+  const sb = window.supabase.createClient(cfg.url, cfg.anonKey);
+
+  // Already signed in? Go straight to the portal.
+  sb.auth.getSession().then(({ data }) => { if (data.session) location.replace(PORTAL); });
+
+  // Friendly message after sign-up confirmation / recovery redirect.
+  const p = new URLSearchParams(location.search);
+  if (p.get('confirmed')) say('signinForm', 'Your email is confirmed. Please sign in.', 'ok');
+  if (p.get('signedout')) say('signinForm', 'You have been signed out.', '');
+
+  document.getElementById('signinForm').addEventListener('submit', async e => {
+    e.preventDefault(); const f = e.target;
+    if (!f.reportValidity()) return;
+    busy(f, true); say(f.id, '');
+    const { error } = await sb.auth.signInWithPassword({
+      email: f.querySelector('#si-email').value.trim(),
+      password: f.querySelector('#si-pass').value
+    });
+    busy(f, false);
+    if (error){
+      const m = /confirm/i.test(error.message) ? 'Please confirm your email first — check your inbox for the confirmation link.' : 'Incorrect email or password.';
+      return say(f.id, m, 'err');
+    }
+    location.replace(PORTAL);
+  });
+
+  document.getElementById('signupForm').addEventListener('submit', async e => {
+    e.preventDefault(); const f = e.target;
+    if (!f.reportValidity()) return;
+    const pass = f.querySelector('#su-pass').value, pass2 = f.querySelector('#su-pass2').value;
+    if (pass !== pass2) return say(f.id, 'Passwords do not match.', 'err');
+    busy(f, true); say(f.id, '');
+    const { data, error } = await sb.auth.signUp({
+      email: f.querySelector('#su-email').value.trim(),
+      password: pass,
+      options: {
+        data: { full_name: f.querySelector('#su-name').value.trim() },
+        emailRedirectTo: location.origin + '/login?confirmed=1'
+      }
+    });
+    busy(f, false);
+    if (error) return say(f.id, error.message, 'err');
+    if (data.session){ location.replace(PORTAL); return; }
+    say(f.id, 'Account created. Please check your email and click the confirmation link, then sign in.', 'ok');
+  });
+
+  document.getElementById('resetForm').addEventListener('submit', async e => {
+    e.preventDefault(); const f = e.target;
+    if (!f.reportValidity()) return;
+    busy(f, true); say(f.id, '');
+    const { error } = await sb.auth.resetPasswordForEmail(f.querySelector('#rs-email').value.trim(), {
+      redirectTo: location.origin + PORTAL
+    });
+    busy(f, false);
+    if (error) return say(f.id, error.message, 'err');
+    say(f.id, 'If an account exists for that email, a reset link is on its way.', 'ok');
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Profile — Sripadha Infrawish Investors</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='%23ffffff'/%3E%3Cpath d='M16 6 6 14v11h7v-7h6v7h7V14L16 6z' fill='none' stroke='%2324409a' stroke-width='1.8' stroke-linejoin='round'/%3E%3Cpath d='M5 27h22' stroke='%23e5a62a' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/portal.css">
+</head>
+<body>
+
+<header class="p-header">
+  <div class="wrap">
+    <a href="/" class="logo" aria-label="Sripadha Infrawish home"><img src="/logo-on-dark.png" alt="Sripadha Infrawish" width="760" height="190"></a>
+    <nav class="hright">
+      <span class="who" id="who"></span>
+      <a href="/">Site</a>
+      <button type="button" class="linkbtn" id="pwBtn" style="text-decoration:none;letter-spacing:.14em;text-transform:uppercase;font-size:.72rem;color:rgba(239,233,219,.7)">Password</button>
+      <button type="button" class="btn btn-line btn-sm" id="signout" style="border-color:rgba(239,233,219,.35);color:#efe9db">Sign out</button>
+    </nav>
+  </div>
+</header>
+
+<main class="p-main">
+  <div class="wrap">
+    <div class="loading" id="loading">Loading your profile…</div>
+
+    <div id="app" hidden>
+      <div class="p-head">
+        <div>
+          <div class="kicker">Investor Profile</div>
+          <h1 id="greet">Welcome.</h1>
+          <p class="lead" style="margin:0">Keep your details current so our team can reach you and share documents securely.</p>
+        </div>
+        <p class="meta" id="updated"></p>
+      </div>
+
+      <div class="notice" id="topNotice" hidden role="alert"></div>
+
+      <!-- password panel (shown on recovery or on request) -->
+      <section class="card" id="pwCard" hidden>
+        <h2>Set a new <em>password.</em></h2>
+        <p class="sub">Choose a password of at least 8 characters.</p>
+        <form id="pwForm" novalidate>
+          <div class="fields">
+            <div class="field"><label for="pw1">New password</label><input id="pw1" type="password" minlength="8" required autocomplete="new-password"></div>
+            <div class="field"><label for="pw2">Confirm password</label><input id="pw2" type="password" minlength="8" required autocomplete="new-password"></div>
+          </div>
+          <div style="display:flex;gap:16px;align-items:center;margin-top:22px;flex-wrap:wrap">
+            <button class="btn btn-solid" type="submit">Update Password</button>
+            <button class="linkbtn" type="button" id="pwCancel">Cancel</button>
+            <span class="p-actions status" id="pwStatus" style="position:static;border:0;padding:0;background:none"></span>
+          </div>
+        </form>
+      </section>
+
+      <form id="profileForm" novalidate>
+        <section class="card">
+          <h2>Personal <em>details.</em></h2>
+          <p class="sub">Your name and contact information.</p>
+          <div class="fields">
+            <div class="field"><label for="full_name">Full name</label><input id="full_name" name="full_name" type="text" autocomplete="name" placeholder="As on your PAN card"></div>
+            <div class="field"><label for="email">Email (login)</label><input id="email" type="email" readonly></div>
+            <div class="field"><label for="mobile">Mobile number</label><input id="mobile" name="mobile" type="tel" inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210" pattern="^\+?[0-9 \-]{10,15}$"><span class="hint">10-digit number, with or without +91</span></div>
+            <div class="field"><label for="date_of_birth">Date of birth</label><input id="date_of_birth" name="date_of_birth" type="date" autocomplete="bday"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Identity <em>documents.</em></h2>
+          <p class="sub">Required for KYC and registration of your investments. Stored securely and visible only to you and the Sripadha Infrawish team.</p>
+          <div class="fields">
+            <div class="field"><label for="aadhaar_number">Aadhaar number</label><input id="aadhaar_number" name="aadhaar_number" type="text" inputmode="numeric" maxlength="12" pattern="^[0-9]{12}$" placeholder="12 digits"><span class="hint">12 digits, no spaces</span></div>
+            <div class="field"><label for="pan_number">PAN number</label><input id="pan_number" name="pan_number" type="text" maxlength="10" pattern="^[A-Z]{5}[0-9]{4}[A-Z]$" placeholder="ABCDE1234F" style="text-transform:uppercase"><span class="hint">Format: ABCDE1234F</span></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Emergency <em>contact.</em></h2>
+          <p class="sub">Someone we can reach if we cannot reach you.</p>
+          <div class="fields">
+            <div class="field"><label for="emergency_contact_name">Contact name</label><input id="emergency_contact_name" name="emergency_contact_name" type="text" placeholder="Name &amp; relationship"></div>
+            <div class="field"><label for="emergency_contact_number">Contact number</label><input id="emergency_contact_number" name="emergency_contact_number" type="tel" inputmode="tel" placeholder="+91 98765 43210" pattern="^\+?[0-9 \-]{10,15}$"></div>
+          </div>
+        </section>
+
+        <section class="card">
+          <h2>Family <em>details.</em></h2>
+          <p class="sub">So we can remember the moments that matter to you.</p>
+          <div class="fields">
+            <div class="field"><label for="anniversary_date">Wedding anniversary</label><input id="anniversary_date" name="anniversary_date" type="date"></div>
+            <div class="field"><label for="spouse_name">Spouse name</label><input id="spouse_name" name="spouse_name" type="text"></div>
+            <div class="field"><label for="spouse_birthday">Spouse birthday</label><input id="spouse_birthday" name="spouse_birthday" type="date"></div>
+            <div class="field"><label for="number_of_kids">Number of kids</label><input id="number_of_kids" name="number_of_kids" type="number" min="0" max="12" step="1" value="0"></div>
+            <div class="field full">
+              <label>Kids' names &amp; birthdays</label>
+              <div id="kids"></div>
+              <p class="kids-empty" id="kidsEmpty">Set the number of kids above to add their details.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="p-actions">
+          <button class="btn btn-solid" type="submit" id="saveBtn">Save Changes</button>
+          <span class="status" id="status" aria-live="polite"></span>
+        </div>
+      </form>
+    </div>
+  </div>
+</main>
+
+<footer class="p-footer"><div class="wrap"><p>© <span id="year"></span> Sripadha Infrawish</p><p>Your information is protected and never shared with third parties.</p></div></footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.1/dist/umd/supabase.js"></script>
+<script src="/assets/supabase-config.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+const cfg = window.SRIPADHA_SUPABASE || {};
+if (!cfg.url || !cfg.anonKey){ location.replace('/login'); throw new Error('portal not configured'); }
+const sb = window.supabase.createClient(cfg.url, cfg.anonKey);
+
+const $ = id => document.getElementById(id);
+const FIELDS = ['full_name','mobile','date_of_birth','aadhaar_number','pan_number','emergency_contact_name','emergency_contact_number','anniversary_date','spouse_name','spouse_birthday'];
+let user = null, recovering = false;
+
+/* ---------- auth gate ---------- */
+sb.auth.onAuthStateChange((event, session) => {
+  if (event === 'PASSWORD_RECOVERY'){ recovering = true; showPw(true, 'Please set a new password to finish resetting your account.'); }
+  if (event === 'SIGNED_OUT') location.replace('/login?signedout=1');
+});
+
+(async function init(){
+  const { data: { session } } = await sb.auth.getSession();
+  if (!session){
+    // Give the recovery/confirm hash a moment to be exchanged for a session.
+    if (location.hash.includes('access_token') || location.hash.includes('type=recovery')){
+      await new Promise(r => setTimeout(r, 1200));
+      const again = await sb.auth.getSession();
+      if (!again.data.session) return location.replace('/login');
+      return start(again.data.session.user);
+    }
+    return location.replace('/login');
+  }
+  start(session.user);
+})();
+
+async function start(u){
+  user = u;
+  $('who').textContent = u.email;
+  $('email').value = u.email;
+  const { data, error } = await sb.from('investor_profiles').select('*').eq('id', u.id).maybeSingle();
+  if (error){ notice('Could not load your profile: ' + error.message, 'err'); }
+  const p = data || {};
+  FIELDS.forEach(k => { $(k).value = p[k] || ''; });
+  if (!p.full_name && u.user_metadata && u.user_metadata.full_name) $('full_name').value = u.user_metadata.full_name;
+  const kids = Array.isArray(p.kids) ? p.kids : [];
+  $('number_of_kids').value = p.number_of_kids != null ? p.number_of_kids : kids.length;
+  renderKids(kids);
+  const name = ($('full_name').value || '').trim().split(' ')[0];
+  $('greet').innerHTML = name ? 'Welcome, <em>' + esc(name) + '.</em>' : 'Welcome.';
+  $('updated').textContent = p.updated_at ? 'Last updated ' + fmtDate(p.updated_at) : 'Profile not yet completed';
+  $('loading').hidden = true; $('app').hidden = false;
+}
+
+/* ---------- kids rows ---------- */
+function renderKids(list){
+  const wrap = $('kids'); wrap.innerHTML = '';
+  list.forEach((k, i) => wrap.appendChild(kidRow(k, i)));
+  $('kidsEmpty').hidden = list.length > 0;
+}
+function kidRow(k, i){
+  const row = document.createElement('div'); row.className = 'kid-row';
+  row.innerHTML =
+    '<div class="field"><label>Child ' + (i+1) + ' name</label><input type="text" data-kid-name placeholder="Name"></div>' +
+    '<div class="field"><label>Birthday</label><input type="date" data-kid-dob></div>' +
+    '<button type="button" class="rm" aria-label="Remove child">✕</button>';
+  row.querySelector('[data-kid-name]').value = k.name || '';
+  row.querySelector('[data-kid-dob]').value = k.birthday || '';
+  row.querySelector('.rm').addEventListener('click', () => { row.remove(); syncCount(); relabel(); });
+  return row;
+}
+function readKids(){
+  return [...$('kids').querySelectorAll('.kid-row')].map(r => ({
+    name: r.querySelector('[data-kid-name]').value.trim(),
+    birthday: r.querySelector('[data-kid-dob]').value || null
+  }));
+}
+function syncCount(){ const n = $('kids').children.length; $('number_of_kids').value = n; $('kidsEmpty').hidden = n > 0; }
+function relabel(){ [...$('kids').querySelectorAll('.kid-row')].forEach((r, i) => r.querySelector('label').textContent = 'Child ' + (i+1) + ' name'); }
+$('number_of_kids').addEventListener('change', () => {
+  let n = Math.max(0, Math.min(12, parseInt($('number_of_kids').value || '0', 10) || 0));
+  $('number_of_kids').value = n;
+  const cur = readKids();
+  while (cur.length < n) cur.push({});
+  renderKids(cur.slice(0, n));
+});
+
+/* ---------- save ---------- */
+$('pan_number').addEventListener('input', e => { e.target.value = e.target.value.toUpperCase().replace(/[^A-Z0-9]/g,''); });
+$('aadhaar_number').addEventListener('input', e => { e.target.value = e.target.value.replace(/\D/g,'').slice(0,12); });
+
+$('profileForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const f = e.target;
+  if (!f.reportValidity()) return status('Please correct the highlighted fields.', 'err');
+  const kids = readKids();
+  const row = { id: user.id, email: user.email, kids, number_of_kids: kids.length };
+  FIELDS.forEach(k => { const v = $(k).value.trim(); row[k] = v === '' ? null : v; });
+  $('saveBtn').disabled = true; status('Saving…');
+  const { data, error } = await sb.from('investor_profiles').upsert(row, { onConflict: 'id' }).select('updated_at').single();
+  $('saveBtn').disabled = false;
+  if (error){
+    const msg = /pan_format/.test(error.message) ? 'PAN must look like ABCDE1234F.'
+              : /aadhaar_format/.test(error.message) ? 'Aadhaar must be exactly 12 digits.'
+              : error.message;
+    return status('Could not save: ' + msg, 'err');
+  }
+  status('Saved.', 'ok');
+  $('updated').textContent = 'Last updated ' + fmtDate(data.updated_at);
+  const name = ($('full_name').value || '').trim().split(' ')[0];
+  $('greet').innerHTML = name ? 'Welcome, <em>' + esc(name) + '.</em>' : 'Welcome.';
+  setTimeout(() => status(''), 3500);
+});
+
+/* ---------- password ---------- */
+function showPw(on, msg){ $('pwCard').hidden = !on; if (on){ notice(msg || '', msg ? '' : null); $('pw1').focus(); } }
+$('pwBtn').addEventListener('click', () => showPw(true));
+$('pwCancel').addEventListener('click', () => { showPw(false); notice(''); });
+$('pwForm').addEventListener('submit', async e => {
+  e.preventDefault();
+  const a = $('pw1').value, b = $('pw2').value;
+  if (a.length < 8) return pwStatus('Use at least 8 characters.', 'err');
+  if (a !== b) return pwStatus('Passwords do not match.', 'err');
+  pwStatus('Updating…');
+  const { error } = await sb.auth.updateUser({ password: a });
+  if (error) return pwStatus(error.message, 'err');
+  pwStatus('Password updated.', 'ok');
+  $('pw1').value = $('pw2').value = '';
+  recovering = false;
+  setTimeout(() => { showPw(false); notice(''); }, 1500);
+});
+
+/* ---------- sign out ---------- */
+$('signout').addEventListener('click', async () => { await sb.auth.signOut(); location.replace('/login?signedout=1'); });
+
+/* ---------- helpers ---------- */
+function status(m, kind){ const s = $('status'); s.textContent = m; s.className = 'status' + (kind ? ' ' + kind : ''); }
+function pwStatus(m, kind){ const s = $('pwStatus'); s.textContent = m; s.className = 'status' + (kind ? ' ' + kind : ''); }
+function notice(m, kind){ const n = $('topNotice'); n.hidden = !m; n.textContent = m || ''; n.className = 'notice' + (kind ? ' ' + kind : ''); }
+function esc(s){ return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+function fmtDate(iso){ try { return new Date(iso).toLocaleString('en-IN', { dateStyle:'medium', timeStyle:'short' }); } catch(e){ return iso; } }
+</script>
+</body>
+</html>
