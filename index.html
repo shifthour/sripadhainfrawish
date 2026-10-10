@@ -169,8 +169,8 @@
   /* ============ HEADER ============ */
   header{position:fixed;top:0;left:0;right:0;z-index:100;transition:.45s var(--ease);padding:26px 0}
   .nav{display:flex;align-items:center;justify-content:space-between;gap:24px}
-  .logo{display:flex;align-items:center}
-  .logo-img{height:36px;width:auto;display:block}
+  .logo{display:flex;align-items:center;flex:none}
+  .logo-img{height:46px;width:auto;display:block}
   .logo-for-light{display:none}
   .nav-links{display:flex;gap:36px;align-items:center}
   .nav-links a:not(.btn){
@@ -192,7 +192,7 @@
   header.scrolled{background:rgba(242,238,227,.9);backdrop-filter:blur(16px);border-bottom:1px solid var(--line);padding:12px 0}
   header.scrolled .logo-for-dark{display:none}
   header.scrolled .logo-for-light{display:block}
-  header.scrolled .logo-img{height:30px}
+  header.scrolled .logo-img{height:38px}
   header.scrolled .nav-links a:not(.btn){color:var(--muted)}
   header.scrolled .nav-links a:not(.btn):hover{color:var(--ink)}
   .burger{display:none;background:none;border:none;width:44px;height:44px;position:relative;z-index:120}
@@ -202,11 +202,17 @@
   .burger.open span:nth-child(1){transform:translateY(7.6px) rotate(45deg)}
   .burger.open span:nth-child(2){opacity:0}
   .burger.open span:nth-child(3){transform:translateY(-7.6px) rotate(-45deg)}
-  @media(max-width:1180px) and (min-width:981px){
-    .nav-links{gap:24px}
+  @media(max-width:1440px) and (min-width:981px){
+    .nav-links{gap:22px}
     .nav-links a:not(.btn){font-size:.68rem;letter-spacing:.1em}
-    .nav-cta{padding:10px 16px;font-size:.6rem;letter-spacing:.14em}
-    .nav-cta-alt{margin-left:-10px}
+    .nav-cta{padding:11px 18px;font-size:.62rem;letter-spacing:.14em}
+    .nav-cta-alt{margin-left:-8px}
+  }
+  @media(max-width:1180px) and (min-width:981px){
+    .nav-links{gap:16px}
+    .nav-links a:not(.btn){font-size:.64rem;letter-spacing:.08em}
+    .nav-cta{padding:10px 14px;font-size:.58rem;letter-spacing:.12em}
+    .logo-img{height:38px}
   }
   @media(max-width:980px){
     .nav-links{
@@ -219,8 +225,8 @@
     .burger{display:block}
   }
   @media(max-width:560px){
-    .logo-img{height:27px}
-    header.scrolled .logo-img{height:24px}
+    .logo-img{height:34px}
+    header.scrolled .logo-img{height:30px}
   }
 
   /* ============ HERO ============ */
@@ -668,8 +674,8 @@
 <header id="header">
   <div class="wrap nav">
     <a href="#top" class="logo" aria-label="Sripadha Infrawish home">
-      <img src="logo-on-dark.png" alt="Sripadha Infrawish" class="logo-img logo-for-dark" width="760" height="190">
-      <img src="logo.png" alt="" aria-hidden="true" class="logo-img logo-for-light" width="760" height="190">
+      <img src="logo-on-dark.png" alt="Sripadha Infrawish" class="logo-img logo-for-dark" width="1520" height="464">
+      <img src="logo.png" alt="" aria-hidden="true" class="logo-img logo-for-light" width="1520" height="464">
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="#about">About</a>
@@ -837,13 +843,12 @@
 <section class="presence pad" id="presence">
   <div class="wrap">
     <div class="center">
-      <div class="kicker reveal"><span class="kn">04</span> Growth Intelligence</div>
+      <div class="kicker reveal"><span class="kn">04</span> Our Presence</div>
       <h2 class="display reveal" data-delay="1">Bengaluru is moving.<br><em>We follow the growth.</em></h2>
-      <p class="lede reveal" data-delay="2">Select a location to explore its strategic relevance.</p>
     </div>
     <div class="presence-grid">
       <div class="map-panel reveal">
-        <svg viewBox="0 0 640 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Map of Sripadha Infrawish locations in East and South-East Bengaluru">
+        <svg viewBox="0 0 640 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative map of Sripadha Infrawish locations across North, East and South-East Bengaluru">
           <defs>
             <radialGradient id="mapGlow" cx="55%" cy="42%" r="70%">
               <stop offset="0" stop-color="#292214"/><stop offset="1" stop-color="#16130e"/>
@@ -854,22 +859,33 @@
             <path d="M80 0v520M160 0v520M240 0v520M320 0v520M400 0v520M480 0v520M560 0v520"/>
             <path d="M0 80h640M0 160h640M0 240h640M0 320h640M0 400h640M0 480h640"/>
           </g>
-          <ellipse cx="150" cy="150" rx="34" ry="20" fill="#232a20" opacity=".8"/>
-          <ellipse cx="360" cy="330" rx="26" ry="15" fill="#232a20" opacity=".8"/>
-          <ellipse cx="255" cy="415" rx="30" ry="16" fill="#232a20" opacity=".8"/>
+          <!-- lakes: Bellandur (west) and Varthur (east) -->
+          <ellipse cx="126" cy="348" rx="30" ry="15" fill="#232a20" opacity=".8"/>
+          <ellipse cx="380" cy="290" rx="24" ry="12" fill="#232a20" opacity=".8"/>
           <g fill="none" stroke-linecap="round">
-            <path d="M60 40 C 130 130, 130 300, 90 480" stroke="#453b28" stroke-width="5"/>
-            <path d="M110 90 C 250 70, 380 90, 560 60" stroke="#3a3222" stroke-width="4"/>
-            <path d="M150 170 C 260 190, 360 220, 520 240" stroke="#3a3222" stroke-width="4"/>
-            <path d="M70 300 C 220 330, 380 380, 580 460" stroke="#453b28" stroke-width="5"/>
-            <path d="M420 100 C 430 180, 440 260, 470 400" stroke="#302a1d" stroke-width="3"/>
-            <path d="M300 130 C 310 210, 300 300, 330 420" stroke="#302a1d" stroke-width="3"/>
-            <path d="M180 250 C 260 270, 340 280, 430 300" stroke="#302a1d" stroke-width="3"/>
+            <!-- Outer Ring Road: KR Puram → Marathahalli → Bellandur → Silk Board -->
+            <path d="M140 56 C 192 150, 222 250, 176 330 S 72 420, 30 476" stroke="#453b28" stroke-width="5"/>
+            <!-- Old Madras Road (NH-75): KR Puram → Whitefield → Hoskote -->
+            <path d="M150 238 C 300 236, 380 240, 430 224 S 492 180, 566 136" stroke="#453b28" stroke-width="5"/>
+            <!-- Airport Road (Bellary Rd) → Devanahalli -->
+            <path d="M58 172 C 120 130, 182 104, 236 62" stroke="#3a3222" stroke-width="4"/>
+            <!-- Sarjapur Road: Bellandur → Sarjapur -->
+            <path d="M118 330 C 200 356, 330 396, 470 470" stroke="#453b28" stroke-width="5"/>
+            <!-- Varthur → Gunjur (150 ft Rd) → Kommasandra → Sarjapur -->
+            <path d="M410 250 C 360 300, 320 330, 300 348 S 320 400, 335 412 S 420 452, 452 462" stroke="#3a3222" stroke-width="4"/>
+            <!-- Soukya Road: Whitefield → Hoskote -->
+            <path d="M420 232 C 450 206, 474 190, 500 172" stroke="#302a1d" stroke-width="3"/>
+            <!-- minor links -->
+            <path d="M184 300 C 200 330, 215 355, 232 388" stroke="#302a1d" stroke-width="3"/>
+            <path d="M214 372 C 230 400, 245 420, 258 436" stroke="#302a1d" stroke-width="3"/>
           </g>
           <g class="map-labels" font-family="Inter, sans-serif" font-size="9.5" fill="#6e6248" letter-spacing="1.5">
-            <text x="72" y="255" transform="rotate(78 72 255)">OUTER RING ROAD</text>
-            <text x="330" y="66">WHITEFIELD MAIN ROAD</text>
-            <text x="330" y="376" transform="rotate(13 330 376)">SARJAPUR ROAD</text>
+            <text x="176" y="128" transform="rotate(70 176 128)">OUTER RING ROAD</text>
+            <text x="236" y="226">OLD MADRAS ROAD</text>
+            <text x="150" y="372" transform="rotate(20 150 372)">SARJAPUR ROAD</text>
+            <text x="92" y="128" transform="rotate(-36 92 128)">AIRPORT ROAD</text>
+            <text x="146" y="296" font-size="8" opacity=".75">MARATHAHALLI</text>
+            <text x="96" y="372" font-size="8" opacity=".75">BELLANDUR</text>
           </g>
           <g id="markers"></g>
           <g class="map-compass" transform="translate(590,40)" opacity=".7">
@@ -877,15 +893,15 @@
             <path d="M0 -10 3 4 0 1 -3 4z" fill="#a9885b"/>
             <text y="30" text-anchor="middle" font-family="Inter" font-size="9" fill="#a9885b" letter-spacing="2">N</text>
           </g>
-          <text class="map-caption" x="24" y="496" font-family="Inter" font-size="9" fill="#6e6248" letter-spacing="2">EAST &amp; SOUTH-EAST BENGALURU · ILLUSTRATIVE MAP</text>
+          <text class="map-caption" x="24" y="478" font-family="Inter" font-size="9" fill="#6e6248" letter-spacing="2">BENGALURU · NORTH, EAST &amp; SOUTH-EAST · ILLUSTRATIVE, NOT TO SCALE</text>
         </svg>
       </div>
       <div class="loc-card reveal" data-delay="1">
         <div class="loc-k">Location Spotlight</div>
         <h3 id="locName">Whitefield – Soukya Road</h3>
-        <p id="locDesc">Adjacent to Bengaluru's established IT hub, the Soukya Road belt combines Whitefield's employment ecosystem with emerging residential demand and improving arterial connectivity.</p>
+        <p id="locDesc">The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has acquired more than 30 acres here.</p>
         <div class="loc-tags" id="locTags">
-          <span>IT Corridor</span><span>Residential Demand</span><span>Connectivity</span>
+          <span>IT Hub</span><span>Hope Farm Metro</span><span>30+ Acres Acquired</span>
         </div>
         <a href="#opportunities" class="btn btn-line">Explore Opportunities <span class="ar">→</span></a>
       </div>
@@ -1199,7 +1215,7 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <a href="#top" class="logo">
-          <img src="logo-on-dark.png" alt="Sripadha Infrawish" class="logo-img" width="760" height="190" loading="lazy" style="height:40px">
+          <img src="logo-on-dark.png" alt="Sripadha Infrawish" class="logo-img" width="1520" height="464" loading="lazy" style="height:52px">
         </a>
         <p>Strategic land procurement through collective strength — across Bengaluru's growth corridors.</p>
       </div>
@@ -1385,27 +1401,33 @@ setInterval(checkReveals, 450); // safety net for embedded/odd environments
 
 /* ---------- interactive map ---------- */
 const LOCATIONS = [
-  { id:'whitefield', name:'Whitefield – Soukya Road', x:405, y:95,
-    desc:"Adjacent to Bengaluru's established IT hub, the Soukya Road belt combines Whitefield's employment ecosystem with emerging residential demand and improving arterial connectivity.",
-    tags:['IT Corridor','Residential Demand','Metro Proximity'] },
-  { id:'siddapura', name:'Siddapura', x:200, y:325,
-    desc:"Positioned along the Sarjapur Road influence zone, Siddapura benefits from spill-over growth from established tech corridors and steadily improving social infrastructure.",
-    tags:['Sarjapur Road Belt','Emerging Corridor','Connectivity'] },
-  { id:'gunjur', name:'Gunjur – 150 Feet Road', x:340, y:215,
-    desc:"The widening 150 Feet Road makes Gunjur a key connector between Varthur and the Sarjapur Road ecosystem — a corridor witnessing rapid residential and institutional growth.",
-    tags:['150 Ft Road','Fast-Growing','Villa Belt'] },
-  { id:'gattahalli', name:'Gattahalli', x:280, y:390,
+  { id:'whitefield', name:'Whitefield – Soukya Road', x:420, y:232,
+    desc:"The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has acquired more than 30 acres here.",
+    tags:['IT Hub','Hope Farm Metro','30+ Acres Acquired'] },
+  { id:'siddapura', name:'Siddapura – Whitefield', x:345, y:262,
+    desc:"Part of Whitefield — Bengaluru's Grade-A office hub, connected by metro. Acquired 12+ acres of land, with a Joint Development Agreement (JDA) given to a Tier-1 builder.",
+    tags:['Grade-A Office Hub','Metro Connected','12+ Acres · JDA'] },
+  { id:'gunjur', name:'Gunjur – 150 Feet Road', x:300, y:348,
+    desc:"The closest high-rise hub to the Outer Ring Road, Marathahalli and Bellandur. Involved in more than 30 acres of land acquisition.",
+    tags:['ORR Proximity','High-Rise Hub','30+ Acres'] },
+  { id:'sarjapur', name:'Sarjapur', x:452, y:462,
+    desc:"The recent growth in Sarjapur laid our foundation stone in real estate. Acquired 10+ acres across Sarjapur, Kodathi and Kommasandra, and supported multiple land acquisitions along Sarjapur Road.",
+    tags:['Growth Corridor','10+ Acres Acquired','Sarjapur Road'] },
+  { id:'kodathi', name:'Kodathi', x:215, y:372,
+    desc:"Between the Outer Ring Road tech cluster and Sarjapur Road — twin-corridor connectivity. Part of our 10+ acre acquisition across Sarjapur, Kodathi and Kommasandra.",
+    tags:['Twin Corridors','ORR Access','Acquired'] },
+  { id:'kommasandra', name:'Kommasandra', x:335, y:412,
+    desc:"Off the Sarjapur belt, within reach of key employment catchments. Part of our 10+ acre acquisition across Sarjapur, Kodathi and Kommasandra.",
+    tags:['Sarjapur Belt','Strategic Parcels','Acquired'] },
+  { id:'gattahalli', name:'Gattahalli', x:258, y:436,
     desc:"A quiet pocket in South-East Bengaluru gaining relevance from its proximity to Sarjapur Road employment nodes, schools and upcoming infrastructure investments.",
     tags:['South-East Growth','Value Pocket','Infrastructure'] },
-  { id:'sarjapur', name:'Sarjapur', x:470, y:415,
-    desc:"One of Bengaluru's most watched growth corridors — anchored by major tech park announcements, road upgrades and strong long-term residential demand.",
-    tags:['Growth Corridor','Tech Anchors','High Demand'] },
-  { id:'kommasandra', name:'Kommasandra', x:395, y:330,
-    desc:"Located off the Sarjapur belt, Kommasandra offers strategic land parcels within reach of key employment catchments while retaining long-term development headroom.",
-    tags:['Strategic Parcels','Sarjapur Belt','Headroom'] },
-  { id:'kodathi', name:'Kodathi', x:265, y:270,
-    desc:"Between the ORR tech cluster and Sarjapur Road, Kodathi enjoys twin-corridor connectivity — a location profile that supports both residential and plotted development.",
-    tags:['Twin Corridors','ORR Access','Balanced Growth'] },
+  { id:'hoskote', name:'Hoskote', x:500, y:172,
+    desc:"East Bengaluru on Old Madras Road (NH-75), beyond Whitefield — one of the city's latest growth corridors. Proposals are under way to procure land here.",
+    tags:['Old Madras Road','Latest Growth Corridor','Proposal Stage'] },
+  { id:'devanahalli', name:'Devanahalli', x:236, y:66,
+    desc:"North Bengaluru's airport corridor — one of the city's latest growth corridors. Proposals are under way to procure land here.",
+    tags:['Airport Corridor','Latest Growth Corridor','Proposal Stage'] },
 ];
 
 const markersG = document.getElementById('markers');
