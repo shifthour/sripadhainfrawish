@@ -307,9 +307,14 @@
   /* ============ ABOUT ============ */
   .about-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:80px;align-items:start}
   .about-quote{
-    font-family:var(--serif);font-size:clamp(1.4rem,2.5vw,1.8rem);font-style:italic;
-    color:var(--accent);border-left:1px solid var(--accent-line);padding-left:28px;margin:34px 0;line-height:1.4;
+    display:flex;flex-direction:column;font-family:var(--serif);
+    border-left:1px solid var(--accent-line);padding-left:28px;margin:34px 0;line-height:1.15;
   }
+  .about-quote .rq-lead{font-size:clamp(2.2rem,4vw,3.2rem);font-style:italic;font-weight:400;color:var(--ink);margin-bottom:10px}
+  .about-quote .rq-word{font-size:clamp(1.5rem,2.6vw,2.1rem);font-weight:500;letter-spacing:.01em;line-height:1.3}
+  .about-quote .rq-1{color:var(--accent)}
+  .about-quote .rq-2{color:var(--success)}
+  .about-quote .rq-3{color:var(--ink)}
   .about p{color:var(--muted);margin-bottom:20px;max-width:540px}
   .principles{display:flex;flex-direction:column;border-top:1px solid var(--line)}
   .principle{
@@ -738,8 +743,13 @@
     <div class="about-grid about">
       <div>
         <div class="kicker reveal"><span class="kn">01</span> About Us</div>
-        <h2 class="display reveal" data-delay="1">Building the foundation<br>for <em>tomorrow.</em></h2>
-        <div class="about-quote reveal" data-delay="2">The right land. The right location.<br>The right people.</div>
+        <h2 class="display reveal" data-delay="1">The city's new chapter is unfolding,<br><em>let's shape it together.</em></h2>
+        <div class="about-quote reveal" data-delay="2" aria-label="The right land, the right location, the right people">
+          <span class="rq-lead">The right</span>
+          <span class="rq-word rq-1">Land.</span>
+          <span class="rq-word rq-2">Location.</span>
+          <span class="rq-word rq-3">People.</span>
+        </div>
         <p class="reveal" data-delay="3">Sripadha Infrawish brings together like-minded investors to identify, evaluate and participate in strategically located land and real-estate opportunities in and around Bengaluru.</p>
         <p class="reveal" data-delay="4">Strategic land parcels are often out of reach for a single buyer, and hard to evaluate without local knowledge. We solve both — combining on-ground location intelligence with a disciplined, documentation-first process, and the collective strength of an investor community that shares a long-term vision.</p>
       </div>
