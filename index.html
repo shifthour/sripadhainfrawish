@@ -487,6 +487,12 @@
   .opp-link:hover{gap:16px;color:#6d5330}
   .opp-note{text-align:center;color:var(--muted);font-size:.8rem;margin-top:48px;max-width:760px;margin-left:auto;margin-right:auto}
   @media(max-width:980px){.opp-grid{grid-template-columns:1fr;max-width:480px;margin-left:auto;margin-right:auto}}
+  .opp-empty{margin:64px auto 0;max-width:720px;text-align:center;border:1px dashed var(--accent-line);border-radius:var(--r);background:var(--card);padding:64px 40px}
+  .opp-empty-mark{width:56px;height:56px;border:1px solid var(--accent-line);border-radius:50%;margin:0 auto 24px;display:flex;align-items:center;justify-content:center;color:var(--accent)}
+  .opp-empty-mark svg{width:22px;height:22px}
+  .opp-empty h3{font-size:1.9rem;font-weight:500;color:var(--ink);margin-bottom:14px}
+  .opp-empty p{color:var(--muted);font-size:.95rem;max-width:520px;margin:0 auto 30px}
+  @media(max-width:560px){.opp-empty{padding:44px 24px}}
 
   /* ============ FORMS ============ */
   .forms-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px;margin-top:70px}
@@ -944,68 +950,17 @@
     <div class="center">
       <div class="kicker reveal"><span class="kn">06</span> Current Opportunities</div>
       <h2 class="display reveal" data-delay="1">Explore our <em>opportunities.</em></h2>
-      <p class="lede reveal" data-delay="2">Curated land and real-estate opportunities across Bengaluru's growth corridors. Register to receive full details.</p>
+      <p class="lede reveal" data-delay="2">Curated land and real-estate opportunities across Bengaluru's growth corridors, published here as they open.</p>
     </div>
-    <div class="opp-grid">
-      <article class="opp-card reveal" data-delay="1">
-        <div class="opp-visual">
-          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=70" srcset="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=800&q=70 800w" sizes="(max-width:980px) 92vw, 380px" alt="Open land at golden hour along the Sarjapur corridor" loading="lazy" decoding="async">
-          <span class="opp-badge">Land</span>
-          <span class="opp-status">Details Pending</span>
-          <span class="opp-loc-label">Sarjapur</span>
-        </div>
-        <div class="opp-body">
-          <h3>Strategic Land Opportunity</h3>
-          <div class="opp-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Sarjapur Corridor, South-East Bengaluru</div>
-          <p>The Sarjapur corridor is one of Bengaluru's most watched growth belts — anchored by major tech park announcements, road upgrades and strong long-term residential demand.</p>
-          <div class="opp-meta">
-            <div><b>Land</b><span>Asset Type</span></div>
-            <div><b><span class="cn">[Real Information Required]</span></b><span>Extent</span></div>
-            <div><b><span class="cn">[Real Information Required]</span></b><span>Status</span></div>
-          </div>
-          <button class="opp-link" data-opp="sarjapur" type="button">View Opportunity <span class="ar">→</span></button>
-        </div>
-      </article>
-      <article class="opp-card reveal" data-delay="2">
-        <div class="opp-visual">
-          <img src="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=800&q=70" srcset="https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1460317442991-0ec209397118?auto=format&fit=crop&w=800&q=70 800w" sizes="(max-width:980px) 92vw, 380px" alt="Modern apartment residences near Whitefield" loading="lazy" decoding="async">
-          <span class="opp-badge">Apartment</span>
-          <span class="opp-status">Details Pending</span>
-          <span class="opp-loc-label">Whitefield</span>
-        </div>
-        <div class="opp-body">
-          <h3>Apartment Opportunity</h3>
-          <div class="opp-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Whitefield – Soukya Road</div>
-          <p>The Soukya Road belt combines Whitefield's established employment ecosystem with emerging residential demand, schools, hospitals and improving metro connectivity.</p>
-          <div class="opp-meta">
-            <div><b>Apartment</b><span>Asset Type</span></div>
-            <div><b><span class="cn">[Real Information Required]</span></b><span>Config</span></div>
-            <div><b><span class="cn">[Real Information Required]</span></b><span>Status</span></div>
-          </div>
-          <button class="opp-link" data-opp="whitefield" type="button">View Opportunity <span class="ar">→</span></button>
-        </div>
-      </article>
-      <article class="opp-card reveal" data-delay="3">
-        <div class="opp-visual">
-          <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=70" srcset="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=480&q=70 480w, https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=800&q=70 800w" sizes="(max-width:980px) 92vw, 380px" alt="Premium villa residence at Gunjur" loading="lazy" decoding="async">
-          <span class="opp-badge">Villa</span>
-          <span class="opp-status">Details Pending</span>
-          <span class="opp-loc-label">Gunjur</span>
-        </div>
-        <div class="opp-body">
-          <h3>Villa Opportunity</h3>
-          <div class="opp-loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg> Gunjur – 150 Feet Road</div>
-          <p>The widening 150 Feet Road makes Gunjur a key connector between the Varthur and Sarjapur Road ecosystems — a corridor witnessing rapid residential growth.</p>
-          <div class="opp-meta">
-            <div><b>Villa</b><span>Asset Type</span></div>
-            <div><b><span class="cn">[Real Information Required]</span></b><span>Format</span></div>
-            <div><b><span class="cn">[Real Information Required]</span></b><span>Status</span></div>
-          </div>
-          <button class="opp-link" data-opp="gunjur" type="button">View Opportunity <span class="ar">→</span></button>
-        </div>
-      </article>
+    <div class="opp-empty reveal" data-delay="3">
+      <div class="opp-empty-mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+      </div>
+      <h3>New opportunities are posted here.</h3>
+      <p>We are currently evaluating land parcels across Bengaluru’s latest growth corridors. As each opportunity is finalised it will be published on this page — and registered investors hear about it first.</p>
+      <a href="#invest" class="btn btn-solid">Register Your Interest <span class="ar">→</span></a>
     </div>
-    <p class="opp-note reveal">The cards above show the structure of how opportunities are presented — items marked <span class="cn">[Real Information Required]</span> will be replaced with verified project details. Opportunity details, structure and terms are shared individually with registered investors after due diligence. Nothing on this page constitutes an offer or an assurance of returns.</p>
+    <p class="opp-note reveal">Opportunity details, structure and terms are shared individually with registered investors after due diligence. Nothing on this page constitutes an offer or an assurance of returns.</p>
   </div>
 </section>
 
