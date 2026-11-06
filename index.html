@@ -44,6 +44,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
   /* ============ DESIGN TOKENS ============ */
   :root{
@@ -382,16 +383,14 @@
   .presence-grid{display:grid;grid-template-columns:1.22fr .78fr;gap:44px;margin-top:70px;align-items:stretch}
   .map-panel{
     border:1px solid var(--line);border-radius:var(--r);overflow:hidden;
-    background:#f3f0e8;
-    position:relative;min-height:500px;
+    background:#f3f0e8;position:relative;height:560px;z-index:0;
   }
-  .map-panel svg{width:100%;height:100%;position:absolute;inset:0}
-  .map-marker{cursor:pointer}
-  .map-marker circle.pulse{animation:pulse 2.6s ease-out infinite;transform-origin:center;transform-box:fill-box}
-  @keyframes pulse{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(3)}}
-  .map-marker text{font-family:var(--sans);font-size:10.5px;fill:#3a332a;font-weight:500;letter-spacing:.04em;pointer-events:none;paint-order:stroke;stroke:#f3f0e8;stroke-width:3px}
-  .map-marker.active circle.dot{fill:#1f3b6c}
-  .map-marker.active text{fill:#1f3b6c;font-weight:700}
+  .map-panel .leaflet-container{font-family:var(--sans);background:#f3f0e8}
+  .map-panel .leaflet-tile{filter:saturate(.45) brightness(1.05) contrast(.95)}
+  .map-lbl{background:transparent;border:0;box-shadow:none;padding:0 0 0 2px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.03em;color:#3a332a;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff}
+  .map-lbl.active{color:#1f3b6c;font-weight:700}
+  .map-lbl::before{display:none}
+  .leaflet-control-attribution{font-size:9px;color:#8a8273;background:rgba(255,255,255,.7)}
   .loc-card{
     border:1px solid var(--line);border-radius:var(--r);padding:44px 40px;
     background:var(--card);display:flex;flex-direction:column;justify-content:center;min-height:500px;
@@ -412,15 +411,9 @@
   .loc-chip.active{background:var(--accent);color:#fff;border-color:var(--accent);font-weight:500}
   @media(max-width:980px){
     .presence-grid{grid-template-columns:1fr;margin-top:52px}
-    .map-panel{min-height:0;aspect-ratio:640/520}
+    .map-panel{height:420px}
     .loc-card{min-height:0;padding:32px 26px}
     .loc-card h3{font-size:1.6rem}
-    .map-labels,.map-caption{display:none}
-    .map-compass{opacity:.45}
-    .map-marker text{font-size:21px;font-weight:600;paint-order:stroke;stroke:#f3f0e8;stroke-width:5px}
-    .map-marker circle.dot{r:11px}
-    .map-marker circle.pulse{r:13px}
-    .map-marker circle.halo{r:24px}
   }
 
   /* ============ WHY US — editorial rows ============ */
@@ -829,72 +822,7 @@
       <h2 class="display reveal" data-delay="1">Bengaluru is moving.<br><em>We follow the growth.</em></h2>
     </div>
     <div class="presence-grid">
-      <div class="map-panel reveal">
-        <svg viewBox="0 0 640 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative map of Sripadha Infrawish locations across East and South-East Bengaluru">
-          <rect width="640" height="520" fill="#f3f0e8"/>
-          <!-- subtle built-up areas -->
-          <ellipse cx="180" cy="250" rx="150" ry="120" fill="#ebe7dd"/>
-          <ellipse cx="400" cy="250" rx="95" ry="70" fill="#ebe7dd"/>
-          <!-- parks / green -->
-          <ellipse cx="560" cy="430" rx="60" ry="40" fill="#dfe9d2" opacity=".8"/>
-          <ellipse cx="80" cy="150" rx="50" ry="34" fill="#dfe9d2" opacity=".8"/>
-          <!-- lakes: Bellandur (west) and Varthur (east) -->
-          <ellipse cx="126" cy="348" rx="30" ry="15" fill="#b9d8ea" stroke="#9fc4da" stroke-width="1"/>
-          <ellipse cx="380" cy="290" rx="24" ry="12" fill="#b9d8ea" stroke="#9fc4da" stroke-width="1"/>
-          <!-- roads: casing then fill -->
-          <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-            <g stroke="#d6d2c8">
-              <path d="M140 56 C 192 150, 222 250, 176 330 S 72 420, 30 476" stroke-width="10"/>
-              <path d="M150 238 C 300 236, 380 240, 430 224 S 492 180, 566 136" stroke-width="10"/>
-              <path d="M118 330 C 200 356, 330 396, 470 470" stroke-width="10"/>
-              <path d="M410 250 C 360 300, 320 330, 300 348 S 320 400, 335 412 S 420 452, 452 462" stroke-width="7"/>
-              <path d="M420 232 C 450 206, 474 190, 500 172" stroke-width="6"/>
-              <path d="M184 300 C 200 330, 215 355, 232 388" stroke-width="6"/>
-              <path d="M214 372 C 230 400, 245 420, 258 436" stroke-width="6"/>
-            </g>
-            <g stroke="#ffffff">
-              <path d="M140 56 C 192 150, 222 250, 176 330 S 72 420, 30 476" stroke-width="6.5"/>
-              <path d="M150 238 C 300 236, 380 240, 430 224 S 492 180, 566 136" stroke-width="6.5"/>
-              <path d="M118 330 C 200 356, 330 396, 470 470" stroke-width="6.5"/>
-              <path d="M410 250 C 360 300, 320 330, 300 348 S 320 400, 335 412 S 420 452, 452 462" stroke-width="4"/>
-              <path d="M420 232 C 450 206, 474 190, 500 172" stroke-width="3.5"/>
-              <path d="M184 300 C 200 330, 215 355, 232 388" stroke-width="3.5"/>
-              <path d="M214 372 C 230 400, 245 420, 258 436" stroke-width="3.5"/>
-            </g>
-            <!-- highway tint on the three arterials -->
-            <g stroke="#f6e7b0" opacity=".9">
-              <path d="M140 56 C 192 150, 222 250, 176 330 S 72 420, 30 476" stroke-width="4"/>
-              <path d="M150 238 C 300 236, 380 240, 430 224 S 492 180, 566 136" stroke-width="4"/>
-              <path d="M118 330 C 200 356, 330 396, 470 470" stroke-width="4"/>
-            </g>
-            <!-- PROPOSED: Bengaluru Business Corridor (formerly Peripheral Ring Road) -->
-            <path class="map-proposed" d="M 60 28 C 180 10, 330 50, 410 130 S 462 220, 450 300 S 410 420, 380 450 S 300 505, 230 518" stroke="#1f3b6c" stroke-width="3" stroke-dasharray="9 6"/>
-            <!-- PROPOSED: Satellite Town Ring Road (STRR), via Hoskote -->
-            <path class="map-proposed" d="M 300 0 C 380 50, 440 110, 500 172 S 580 250, 640 300" stroke="#2e7d4f" stroke-width="3" stroke-dasharray="9 6"/>
-          </g>
-          <g class="map-labels" font-family="Inter, sans-serif" font-size="9.5" fill="#7a7368" letter-spacing="1.5">
-            <text x="176" y="128" transform="rotate(70 176 128)">OUTER RING ROAD</text>
-            <text x="236" y="226">OLD MADRAS ROAD</text>
-            <text x="150" y="372" transform="rotate(20 150 372)">SARJAPUR ROAD</text>
-            <text x="146" y="296" font-size="8" opacity=".85">MARATHAHALLI</text>
-            <text x="96" y="372" font-size="8" opacity=".85">BELLANDUR</text>
-            <text x="196" y="52" transform="rotate(13 196 52)" fill="#1f3b6c" font-weight="600" font-size="8.5">BENGALURU BUSINESS CORRIDOR · PROPOSED</text>
-            <text x="536" y="222" transform="rotate(42 536 222)" fill="#2e7d4f" font-weight="600" font-size="8.5">STRR · PROPOSED</text>
-          </g>
-          <g id="markers"></g>
-          <g class="map-compass" transform="translate(590,40)" opacity=".8">
-            <circle r="16" fill="#fff" stroke="#8a6a3f" stroke-opacity=".5"/>
-            <path d="M0 -10 3 4 0 1 -3 4z" fill="#8a6a3f"/>
-            <text y="30" text-anchor="middle" font-family="Inter" font-size="9" fill="#8a6a3f" letter-spacing="2">N</text>
-          </g>
-          <g class="map-labels map-legend" transform="translate(438,74)" font-family="Inter, sans-serif" font-size="8" fill="#5f5a50">
-            <rect x="-10" y="-14" width="182" height="44" rx="4" fill="#fff" fill-opacity=".9" stroke="#d6d2c8"/>
-            <line x1="0" y1="0" x2="22" y2="0" stroke="#1f3b6c" stroke-width="3" stroke-dasharray="7 5"/><text x="30" y="3">Business Corridor (BBC) · proposed</text>
-            <line x1="0" y1="18" x2="22" y2="18" stroke="#2e7d4f" stroke-width="3" stroke-dasharray="7 5"/><text x="30" y="21">Satellite Town Ring Rd · proposed</text>
-          </g>
-          <text class="map-caption" x="24" y="498" font-family="Inter" font-size="9" fill="#8a8273" letter-spacing="2">BENGALURU · EAST &amp; SOUTH-EAST · ILLUSTRATIVE, NOT TO SCALE</text>
-        </svg>
-      </div>
+      <div class="map-panel reveal" id="presenceMap" role="region" aria-label="Interactive map of Sripadha Infrawish locations across East and South-East Bengaluru"></div>
       <div class="loc-card reveal" data-delay="1">
         <div class="loc-k">Location Spotlight</div>
         <h3 id="locName">Whitefield – Soukya Road</h3>
@@ -1222,6 +1150,7 @@
   </div>
 </div>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
 <script>
 /* ---------- header scroll + scroll progress + hero parallax + scroll-spy ---------- */
 const header = document.getElementById('header');
@@ -1308,61 +1237,49 @@ setInterval(checkReveals, 450); // safety net for embedded/odd environments
 
 /* ---------- interactive map ---------- */
 const LOCATIONS = [
-  { id:'whitefield', name:'Whitefield – Soukya Road', x:420, y:232,
+  { id:'whitefield', name:'Whitefield – Soukya Road', lat:12.9978, lng:77.7585,
     desc:"The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has supported the acquisition of more than 30 acres here.",
     tags:['IT Hub','Hope Farm Metro','30+ Acres Supported'] },
-  { id:'siddapura', name:'Siddapura – Whitefield', x:345, y:262,
+  { id:'siddapura', name:'Siddapura – Whitefield', lat:12.9615, lng:77.7293,
     desc:"Part of Whitefield — Bengaluru's Grade-A office hub, connected by metro. Supported the acquisition of 12+ acres of land, with a Joint Development Agreement (JDA) given to a Tier-1 builder.",
     tags:['Grade-A Office Hub','Metro Connected','12+ Acres · JDA'] },
-  { id:'gunjur', name:'Gunjur – 150 Feet Road', x:300, y:348,
+  { id:'gunjur', name:'Gunjur – 150 Feet Road', lat:12.9165, lng:77.734,
     desc:"The closest high-rise hub to the Outer Ring Road, Marathahalli and Bellandur. Involved in more than 30 acres of land acquisition.",
     tags:['ORR Proximity','High-Rise Hub','30+ Acres'] },
-  { id:'sarjapur', name:'Sarjapur', x:452, y:462,
+  { id:'sarjapur', name:'Sarjapur', lat:12.86, lng:77.786,
     desc:"The recent growth in Sarjapur laid our foundation stone in real estate. Supported the acquisition of 10+ acres across Sarjapur, Kodathi and Kommasandra, and multiple further land acquisitions along Sarjapur Road.",
     tags:['Growth Corridor','10+ Acres Supported','Sarjapur Road'] },
-  { id:'kodathi', name:'Kodathi', x:215, y:372,
+  { id:'kodathi', name:'Kodathi', lat:12.904, lng:77.706,
     desc:"Between the Outer Ring Road tech cluster and Sarjapur Road — twin-corridor connectivity. Part of the 10+ acre acquisition we supported across Sarjapur, Kodathi and Kommasandra.",
     tags:['Twin Corridors','ORR Access','Acquisition Supported'] },
-  { id:'kommasandra', name:'Kommasandra', x:335, y:412,
+  { id:'kommasandra', name:'Kommasandra', lat:12.886, lng:77.745,
     desc:"Off the Sarjapur belt, within reach of key employment catchments. Part of the 10+ acre acquisition we supported across Sarjapur, Kodathi and Kommasandra.",
     tags:['Sarjapur Belt','Strategic Parcels','Acquisition Supported'] },
-  { id:'gattahalli', name:'Gattahalli', x:258, y:436,
+  { id:'gattahalli', name:'Gattahalli', lat:12.872, lng:77.723,
     desc:"A quiet pocket in South-East Bengaluru gaining relevance from its proximity to Sarjapur Road employment nodes, schools and upcoming infrastructure investments. Sripadha Infrawish has supported the acquisition of 40+ acres of land here.",
     tags:['South-East Growth','40+ Acres Supported','Infrastructure'] },
-  { id:'hoskote', name:'Hoskote', x:500, y:172,
+  { id:'hoskote', name:'Hoskote', lat:13.07, lng:77.798,
     desc:"East Bengaluru on Old Madras Road (NH-75), beyond Whitefield — one of the city's latest growth corridors. Proposals are under way to procure land here.",
     tags:['Old Madras Road','Latest Growth Corridor','Proposal Stage'] },
 ];
 
-const markersG = document.getElementById('markers');
 const chipsWrap = document.getElementById('locChips');
 const locName = document.getElementById('locName');
 const locDesc = document.getElementById('locDesc');
 const locTags = document.getElementById('locTags');
-const SVGNS = 'http://www.w3.org/2000/svg';
+const mapMarkers = {};
+
+const map = L.map('presenceMap', { scrollWheelZoom:false, zoomControl:true, attributionControl:true });
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+  maxZoom: 19,
+  attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
 
 LOCATIONS.forEach(loc => {
-  const g = document.createElementNS(SVGNS,'g');
-  g.setAttribute('class','map-marker');
-  g.dataset.id = loc.id;
-  const pulse = document.createElementNS(SVGNS,'circle');
-  pulse.setAttribute('class','pulse');
-  pulse.setAttribute('cx',loc.x); pulse.setAttribute('cy',loc.y); pulse.setAttribute('r',7);
-  pulse.setAttribute('fill','none'); pulse.setAttribute('stroke','#a9885b'); pulse.setAttribute('stroke-width','1.5');
-  const halo = document.createElementNS(SVGNS,'circle');
-  halo.setAttribute('class','halo');
-  halo.setAttribute('cx',loc.x); halo.setAttribute('cy',loc.y); halo.setAttribute('r',14);
-  halo.setAttribute('fill','transparent');
-  const dot = document.createElementNS(SVGNS,'circle');
-  dot.setAttribute('class','dot');
-  dot.setAttribute('cx',loc.x); dot.setAttribute('cy',loc.y); dot.setAttribute('r',5.5);
-  dot.setAttribute('fill','#8a6a3f'); dot.setAttribute('stroke','#ffffff'); dot.setAttribute('stroke-width','2.5');
-  const label = document.createElementNS(SVGNS,'text');
-  label.setAttribute('x',loc.x + 12); label.setAttribute('y',loc.y + 4);
-  label.textContent = loc.name.split(' – ')[0];
-  g.append(pulse, halo, dot, label);
-  g.addEventListener('click', () => selectLocation(loc.id));
-  markersG.appendChild(g);
+  const m = L.circleMarker([loc.lat, loc.lng], { radius:7, color:'#fff', weight:2.5, fillColor:'#8a6a3f', fillOpacity:1 }).addTo(map);
+  m.bindTooltip(loc.name.split(' – ')[0], { permanent:true, direction:'right', offset:[8,0], className:'map-lbl' });
+  m.on('click', () => selectLocation(loc.id));
+  mapMarkers[loc.id] = m;
 
   const chip = document.createElement('button');
   chip.className = 'loc-chip';
@@ -1374,10 +1291,19 @@ LOCATIONS.forEach(loc => {
   chipsWrap.appendChild(chip);
 });
 
+map.fitBounds(L.latLngBounds(LOCATIONS.map(l => [l.lat, l.lng])), { padding:[36,36] });
+map.on('click', () => map.scrollWheelZoom.enable());
+map.on('mouseout', () => map.scrollWheelZoom.disable());
+
 function selectLocation(id){
   const loc = LOCATIONS.find(l => l.id === id);
   if (!loc) return;
-  document.querySelectorAll('.map-marker').forEach(m => m.classList.toggle('active', m.dataset.id === id));
+  Object.entries(mapMarkers).forEach(([k, m]) => {
+    const on = k === id;
+    m.setStyle({ fillColor: on ? '#1f3b6c' : '#8a6a3f', radius: on ? 9 : 7 });
+    const t = m.getTooltip(); if (t && t.getElement()) t.getElement().classList.toggle('active', on);
+    if (on) m.bringToFront();
+  });
   document.querySelectorAll('.loc-chip').forEach(c => {
     const on = c.dataset.id === id;
     c.classList.toggle('active', on);
