@@ -63,6 +63,7 @@
     --muted-dark:#a2977f;
     --line-dark:rgba(239,233,219,.14);
     /* single accent */
+    --navy:#1f3b6c;          /* brand navy (from logo) */
     --accent:#8a6a3f;        /* muted bronze */
     --accent-soft:#a9885b;
     --accent-faint:rgba(138,106,63,.09);
@@ -186,8 +187,8 @@
   .nav-links a:not(.btn).active{color:var(--ink)}
   .nav-links a:not(.btn).active::after{width:100%}
   .nav-cta{padding:12px 26px;font-size:.68rem}
-  .nav-cta-alt{border-color:var(--line-strong);color:var(--ink);margin-left:-14px}
-  .nav-cta-alt:hover{border-color:var(--accent);color:var(--accent)}
+  .nav-cta-alt{background:var(--navy);border-color:var(--navy);color:#fff;margin-left:-14px}
+  .nav-cta-alt:hover{background:#17305a;border-color:#17305a;color:#fff}
   /* scrolled state: compact */
   header.scrolled{padding:10px 0}
   header.scrolled .logo-img{height:42px}
@@ -219,7 +220,7 @@
     .nav-links.open{opacity:1;pointer-events:auto}
     .nav-links a:not(.btn){font-size:1rem;color:rgba(239,233,219,.8)}
     .nav-links a:not(.btn):hover,.nav-links a:not(.btn).active{color:var(--ink-dark)}
-    .nav-links .nav-cta-alt{border-color:rgba(239,233,219,.4);color:var(--ink-dark);margin-left:0}
+    .nav-links .nav-cta-alt{margin-left:0}
     .burger{display:block}
   }
   @media(max-width:560px){
@@ -338,25 +339,19 @@
   /* ============ COLLECTIVE MODEL (dark signature) ============ */
   .model{background:var(--bg-2);color:var(--ink)}
   .model-flow{max-width:560px;margin:70px auto 0;position:relative}
-  .model-rail{position:absolute;left:50%;top:0;bottom:0;width:1px;background:var(--accent-line);transform:translateX(-50%)}
+  .model-rail{display:none}
   .js .model-rail{transform:translateX(-50%) scaleY(0);transform-origin:top;transition:transform 1.6s var(--ease)}
   .js .model-flow.visible .model-rail{transform:translateX(-50%) scaleY(1)}
   .model-node{
-    position:relative;text-align:center;padding:26px 36px;margin:0 auto 52px;
+    position:relative;text-align:center;padding:26px 36px;margin:0 auto 22px;
     background:var(--card);border:1px solid var(--line);border-radius:var(--r);
     width:min(440px,100%);transition:.4s var(--ease);box-shadow:0 10px 30px -22px rgba(27,23,18,.35);
   }
   .model-node:last-child{margin-bottom:0}
   .model-node:hover{border-color:var(--accent-line)}
-  .model-node::after{
-    content:"";position:absolute;left:50%;bottom:-32px;transform:translateX(-50%);
-    width:7px;height:7px;border-radius:50%;background:var(--accent);
-  }
-  .model-node:last-child::after{display:none}
+  .model-node::after{display:none}
   .model-node b{display:block;letter-spacing:.24em;text-transform:uppercase;font-size:.8rem;font-weight:500;color:var(--ink)}
   .model-node span{color:var(--muted);font-size:.82rem}
-  .model-node.apex{background:var(--accent-faint);border-color:var(--accent-line)}
-  .model-node.apex b{color:var(--accent)}
   .model-note{margin:64px auto 0;max-width:700px;text-align:center;color:var(--muted);font-size:.82rem;border-top:1px solid var(--line);padding-top:30px}
 
   /* ============ PROCESS TIMELINE ============ */
@@ -686,7 +681,6 @@
       <a href="#process">Framework</a>
       <a href="#presence">Presence</a>
       <a href="#opportunities">Opportunities</a>
-      <a href="/login">Existing Investors</a>
       <a href="#faq">FAQ</a>
       <a href="#invest" class="btn btn-solid nav-cta">Become an Investor</a>
       <a href="/login" class="btn btn-line nav-cta nav-cta-alt">Existing Investors</a>
@@ -801,10 +795,10 @@
     <div class="model-flow reveal" id="modelFlow">
       <div class="model-rail" aria-hidden="true"></div>
       <div class="model-node"><b>Landowners</b><span>Strategic parcels across growth corridors</span></div>
-      <div class="model-node apex"><b>Sripadha Infrawish</b><span>Identification · diligence · structuring</span></div>
-      <div class="model-node"><b>Structured Opportunities</b><span>Documented, legally coordinated participation</span></div>
-      <div class="model-node"><b>Investors</b><span>A community of like-minded participants</span></div>
-      <div class="model-node"><b>Long-Term Value</b><span>Patient, sustainable value creation</span></div>
+      <div class="model-node"><b>Sripadha Infrawish</b><span>Identification · diligence · structuring</span></div>
+      <div class="model-node"><b>Structured Opportunities</b><span>Growth-focused parcels, simplified for easy investing</span></div>
+      <div class="model-node"><b>Investors</b><span>A Collective of Visionary Investors</span></div>
+      <div class="model-node"><b>Long-Term Value</b><span>Sustainable Wealth Growth, Promising Future</span></div>
     </div>
     <p class="model-note reveal">Each opportunity is subject to its own structure, documentation, terms and applicable legal requirements. Details are shared with registered investors for every individual opportunity.</p>
   </div>
@@ -852,7 +846,7 @@
     </div>
     <div class="presence-grid">
       <div class="map-panel reveal">
-        <svg viewBox="0 0 640 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative map of Sripadha Infrawish locations across North, East and South-East Bengaluru">
+        <svg viewBox="0 0 640 520" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg" aria-label="Illustrative map of Sripadha Infrawish locations across East and South-East Bengaluru">
           <defs>
             <radialGradient id="mapGlow" cx="55%" cy="42%" r="70%">
               <stop offset="0" stop-color="#292214"/><stop offset="1" stop-color="#16130e"/>
@@ -871,8 +865,6 @@
             <path d="M140 56 C 192 150, 222 250, 176 330 S 72 420, 30 476" stroke="#453b28" stroke-width="5"/>
             <!-- Old Madras Road (NH-75): KR Puram → Whitefield → Hoskote -->
             <path d="M150 238 C 300 236, 380 240, 430 224 S 492 180, 566 136" stroke="#453b28" stroke-width="5"/>
-            <!-- Airport Road (Bellary Rd) → Devanahalli -->
-            <path d="M58 172 C 120 130, 182 104, 236 62" stroke="#3a3222" stroke-width="4"/>
             <!-- Sarjapur Road: Bellandur → Sarjapur -->
             <path d="M118 330 C 200 356, 330 396, 470 470" stroke="#453b28" stroke-width="5"/>
             <!-- Varthur → Gunjur (150 ft Rd) → Kommasandra → Sarjapur -->
@@ -887,7 +879,6 @@
             <text x="176" y="128" transform="rotate(70 176 128)">OUTER RING ROAD</text>
             <text x="236" y="226">OLD MADRAS ROAD</text>
             <text x="150" y="372" transform="rotate(20 150 372)">SARJAPUR ROAD</text>
-            <text x="92" y="128" transform="rotate(-36 92 128)">AIRPORT ROAD</text>
             <text x="146" y="296" font-size="8" opacity=".75">MARATHAHALLI</text>
             <text x="96" y="372" font-size="8" opacity=".75">BELLANDUR</text>
           </g>
@@ -897,15 +888,15 @@
             <path d="M0 -10 3 4 0 1 -3 4z" fill="#a9885b"/>
             <text y="30" text-anchor="middle" font-family="Inter" font-size="9" fill="#a9885b" letter-spacing="2">N</text>
           </g>
-          <text class="map-caption" x="24" y="478" font-family="Inter" font-size="9" fill="#6e6248" letter-spacing="2">BENGALURU · NORTH, EAST &amp; SOUTH-EAST · ILLUSTRATIVE, NOT TO SCALE</text>
+          <text class="map-caption" x="24" y="478" font-family="Inter" font-size="9" fill="#6e6248" letter-spacing="2">BENGALURU · EAST &amp; SOUTH-EAST · ILLUSTRATIVE, NOT TO SCALE</text>
         </svg>
       </div>
       <div class="loc-card reveal" data-delay="1">
         <div class="loc-k">Location Spotlight</div>
         <h3 id="locName">Whitefield – Soukya Road</h3>
-        <p id="locDesc">The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has acquired more than 30 acres here.</p>
+        <p id="locDesc">The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has supported the acquisition of more than 30 acres here.</p>
         <div class="loc-tags" id="locTags">
-          <span>IT Hub</span><span>Hope Farm Metro</span><span>30+ Acres Acquired</span>
+          <span>IT Hub</span><span>Hope Farm Metro</span><span>30+ Acres Supported</span>
         </div>
         <a href="#opportunities" class="btn btn-line">Explore Opportunities <span class="ar">→</span></a>
       </div>
@@ -988,7 +979,7 @@
             <div class="field"><label for="inv-email">Email *</label><input id="inv-email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
             <div class="field"><label for="inv-city">City</label><input id="inv-city" type="text" autocomplete="address-level2" placeholder="City of residence"></div>
             <div class="field"><label for="inv-interest">Interest</label>
-              <select id="inv-interest"><option>Land</option><option>Apartment</option><option>Villa</option><option>Other</option></select>
+              <select id="inv-interest"><option>Apartment</option><option>Villa</option><option>Villa Plots</option><option>Commercial Space</option></select>
             </div>
             <div class="field"><label for="inv-range">Preferred Range</label>
               <select id="inv-range"><option>Up to ₹25 Lakhs</option><option>₹25 – 50 Lakhs</option><option>₹50 Lakhs – 1 Cr</option><option>₹1 Cr +</option><option>Prefer to discuss</option></select>
@@ -1089,15 +1080,15 @@
     <div class="faq-list reveal">
       <div class="faq-item">
         <button class="faq-q">What does Sripadha Infrawish do?</button>
-        <div class="faq-a"><p>We identify, evaluate and structure strategically located land and real-estate opportunities in and around Bengaluru, and bring together like-minded investors to participate in them collectively.</p></div>
+        <div class="faq-a"><p>We identify, evaluate and structure strategically located land and real-estate opportunities in and around Bengaluru, bringing together vision-aligned investors to participate in them collectively.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">How does the collective model work?</button>
-        <div class="faq-a"><p>Individually, a strategic land parcel may be out of reach for a single investor. Through collective participation, a group of investors comes together for a specific opportunity. Each opportunity has its own structure, documentation, terms and applicable legal requirements, which are shared transparently before participation.</p></div>
+        <div class="faq-a"><p>Strategically located land parcels often require significant capital, making individual participation challenging. Through collective investment, we bring together a group of investors to participate in specific opportunities. Each opportunity is independently structured, with its own documentation, participation terms and applicable legal requirements, all of which are shared transparently before investors make their decisions.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">What types of opportunities are available?</button>
-        <div class="faq-a"><p>Opportunities span land parcels, apartments and villas — primarily across East and South-East Bengaluru growth corridors such as Whitefield, Gunjur, Sarjapur and surrounding areas.</p></div>
+        <div class="faq-a"><p>Our investment opportunities focus on strategically identified land parcels with the potential for transformation into residential developments, including apartments and villas. These opportunities are primarily located across the high-growth corridors of East and South-East Bengaluru, including Whitefield, Varthur–Gunjur, Hoskote, Sarjapur Road and surrounding areas.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">How are locations selected?</button>
@@ -1109,7 +1100,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">What information is provided before an investment decision?</button>
-        <div class="faq-a"><p>Registered investors receive the opportunity's details, structure, documentation and terms before any decision — and are encouraged to review everything and seek independent advice.</p></div>
+        <div class="faq-a"><p>Registered investors are provided with complete details of each opportunity, including its investment structure, documentation and participation terms, well before making a decision. We encourage investors to carefully review all information and seek independent professional advice to make informed investment decisions.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Who can register as an investor?</button>
@@ -1117,7 +1108,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">Can NRIs participate?</button>
-        <div class="faq-a"><p>Yes. NRIs form an important part of our investor community. Participation for NRIs is subject to applicable regulations, and our team guides you through the specifics for each opportunity.</p></div>
+        <div class="faq-a"><p>Yes, NRIs are an integral part of the Sripadha Infrawish investor community. We welcome participation from Non-Resident Indians, subject to applicable laws and regulatory requirements. Our team provides dedicated guidance on eligibility, documentation and compliance procedures specific to each investment opportunity.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q">How can landowners submit their property?</button>
@@ -1353,32 +1344,29 @@ setInterval(checkReveals, 450); // safety net for embedded/odd environments
 /* ---------- interactive map ---------- */
 const LOCATIONS = [
   { id:'whitefield', name:'Whitefield – Soukya Road', x:420, y:232,
-    desc:"The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has acquired more than 30 acres here.",
-    tags:['IT Hub','Hope Farm Metro','30+ Acres Acquired'] },
+    desc:"The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has supported the acquisition of more than 30 acres here.",
+    tags:['IT Hub','Hope Farm Metro','30+ Acres Supported'] },
   { id:'siddapura', name:'Siddapura – Whitefield', x:345, y:262,
-    desc:"Part of Whitefield — Bengaluru's Grade-A office hub, connected by metro. Acquired 12+ acres of land, with a Joint Development Agreement (JDA) given to a Tier-1 builder.",
+    desc:"Part of Whitefield — Bengaluru's Grade-A office hub, connected by metro. Supported the acquisition of 12+ acres of land, with a Joint Development Agreement (JDA) given to a Tier-1 builder.",
     tags:['Grade-A Office Hub','Metro Connected','12+ Acres · JDA'] },
   { id:'gunjur', name:'Gunjur – 150 Feet Road', x:300, y:348,
     desc:"The closest high-rise hub to the Outer Ring Road, Marathahalli and Bellandur. Involved in more than 30 acres of land acquisition.",
     tags:['ORR Proximity','High-Rise Hub','30+ Acres'] },
   { id:'sarjapur', name:'Sarjapur', x:452, y:462,
-    desc:"The recent growth in Sarjapur laid our foundation stone in real estate. Acquired 10+ acres across Sarjapur, Kodathi and Kommasandra, and supported multiple land acquisitions along Sarjapur Road.",
-    tags:['Growth Corridor','10+ Acres Acquired','Sarjapur Road'] },
+    desc:"The recent growth in Sarjapur laid our foundation stone in real estate. Supported the acquisition of 10+ acres across Sarjapur, Kodathi and Kommasandra, and multiple further land acquisitions along Sarjapur Road.",
+    tags:['Growth Corridor','10+ Acres Supported','Sarjapur Road'] },
   { id:'kodathi', name:'Kodathi', x:215, y:372,
-    desc:"Between the Outer Ring Road tech cluster and Sarjapur Road — twin-corridor connectivity. Part of our 10+ acre acquisition across Sarjapur, Kodathi and Kommasandra.",
-    tags:['Twin Corridors','ORR Access','Acquired'] },
+    desc:"Between the Outer Ring Road tech cluster and Sarjapur Road — twin-corridor connectivity. Part of the 10+ acre acquisition we supported across Sarjapur, Kodathi and Kommasandra.",
+    tags:['Twin Corridors','ORR Access','Acquisition Supported'] },
   { id:'kommasandra', name:'Kommasandra', x:335, y:412,
-    desc:"Off the Sarjapur belt, within reach of key employment catchments. Part of our 10+ acre acquisition across Sarjapur, Kodathi and Kommasandra.",
-    tags:['Sarjapur Belt','Strategic Parcels','Acquired'] },
+    desc:"Off the Sarjapur belt, within reach of key employment catchments. Part of the 10+ acre acquisition we supported across Sarjapur, Kodathi and Kommasandra.",
+    tags:['Sarjapur Belt','Strategic Parcels','Acquisition Supported'] },
   { id:'gattahalli', name:'Gattahalli', x:258, y:436,
-    desc:"A quiet pocket in South-East Bengaluru gaining relevance from its proximity to Sarjapur Road employment nodes, schools and upcoming infrastructure investments.",
-    tags:['South-East Growth','Value Pocket','Infrastructure'] },
+    desc:"A quiet pocket in South-East Bengaluru gaining relevance from its proximity to Sarjapur Road employment nodes, schools and upcoming infrastructure investments. Sripadha Infrawish has supported the acquisition of 40+ acres of land here.",
+    tags:['South-East Growth','40+ Acres Supported','Infrastructure'] },
   { id:'hoskote', name:'Hoskote', x:500, y:172,
     desc:"East Bengaluru on Old Madras Road (NH-75), beyond Whitefield — one of the city's latest growth corridors. Proposals are under way to procure land here.",
     tags:['Old Madras Road','Latest Growth Corridor','Proposal Stage'] },
-  { id:'devanahalli', name:'Devanahalli', x:236, y:66,
-    desc:"North Bengaluru's airport corridor — one of the city's latest growth corridors. Proposals are under way to procure land here.",
-    tags:['Airport Corridor','Latest Growth Corridor','Proposal Stage'] },
 ];
 
 const markersG = document.getElementById('markers');
