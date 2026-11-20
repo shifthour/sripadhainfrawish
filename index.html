@@ -92,6 +92,7 @@
   body{
     font-family:var(--sans);background:var(--bg);color:var(--ink);
     line-height:1.7;font-size:16.5px;font-weight:300;overflow-x:hidden;
+    font-variant-numeric:lining-nums;
   }
   ::selection{background:var(--accent);color:#fff}
   img,svg{max-width:100%;display:block}
@@ -308,7 +309,7 @@
   .metrics .wrap{display:grid;grid-template-columns:repeat(4,1fr);padding-top:84px;padding-bottom:84px}
   .metric{text-align:center;position:relative;padding:10px 24px}
   .metric + .metric::before{content:"";position:absolute;left:0;top:18%;bottom:18%;width:1px;background:var(--line)}
-  .metric .stat-num{font-family:var(--serif);font-size:clamp(2.8rem,4.6vw,3.9rem);color:var(--ink);font-weight:500;line-height:1;display:block;margin-bottom:12px;font-variant-numeric:tabular-nums;min-height:1em}
+  .metric .stat-num{font-family:var(--serif);font-size:clamp(2.8rem,4.6vw,3.9rem);color:var(--ink);font-weight:500;line-height:1;display:block;margin-bottom:12px;font-variant-numeric:lining-nums tabular-nums;min-height:1em}
   .metric b{display:block;font-size:.72rem;letter-spacing:.28em;text-transform:uppercase;font-weight:500;color:var(--accent);margin-bottom:6px}
   .metric span{color:var(--muted);font-size:.85rem}
   @media(max-width:980px) and (min-width:761px){
@@ -340,7 +341,7 @@
   .about p{color:var(--muted);margin-bottom:20px;max-width:540px}
   .principles{display:flex;flex-direction:column;border-top:1px solid var(--line)}
   .principle{
-    display:grid;grid-template-columns:76px 1fr;gap:20px;align-items:baseline;
+    display:block;
     padding:30px 4px;border-bottom:1px solid var(--line);transition:.4s var(--ease);position:relative;
   }
   .principle::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--accent);transition:width .6s var(--ease)}
@@ -434,7 +435,7 @@
   #why .lede{margin-top:18px}
   .why-list{margin-top:70px;border-top:1px solid var(--line)}
   .why-row{
-    display:grid;grid-template-columns:90px 1fr 1.2fr;gap:32px;align-items:baseline;
+    display:grid;grid-template-columns:1fr 1.2fr;gap:32px;align-items:baseline;
     padding:38px 6px;border-bottom:1px solid var(--line);position:relative;transition:.4s;
   }
   .why-row::after{content:"";position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--accent);transition:width .7s var(--ease)}
@@ -672,7 +673,7 @@
 <header id="header">
   <div class="wrap nav">
     <a href="#top" class="logo" aria-label="Sripadha Infrawish home">
-      <img src="logo.png" alt="Sripadha Infrawish" class="logo-img" width="1520" height="464">
+      <img src="logo.png" alt="Sripadha Infrawish" class="logo-img" width="1520" height="428">
     </a>
     <nav class="nav-links" id="navLinks">
       <a href="#about">About</a>
@@ -762,19 +763,15 @@
       </div>
       <div class="principles">
         <div class="principle reveal" data-delay="1">
-          <span class="num">01 —</span>
           <div><b>Strategic Selection</b><p>Every parcel is chosen for its position within a genuine growth corridor — never opportunistically.</p></div>
         </div>
         <div class="principle reveal" data-delay="2">
-          <span class="num">02 —</span>
           <div><b>Location Intelligence</b><p>Connectivity, infrastructure momentum and employment catchments are studied before any shortlist.</p></div>
         </div>
         <div class="principle reveal" data-delay="3">
-          <span class="num">03 —</span>
           <div><b>Transparent Process</b><p>Ownership, documentation and terms are shared clearly before anyone participates.</p></div>
         </div>
         <div class="principle reveal" data-delay="4">
-          <span class="num">04 —</span>
           <div><b>Long-Term Perspective</b><p>We focus on sustainable value creation over time — not short-term speculation.</p></div>
         </div>
       </div>
@@ -811,22 +808,18 @@
       <div class="tl-track" aria-hidden="true"><div class="tl-progress" id="tlProgress"></div></div>
       <ol class="tl-steps">
         <li class="tl-step reveal">
-          <span class="tl-num">01</span>
           <h3>Identify</h3>
           <p>Identify strategically located land opportunities across Bengaluru's growth corridors.</p>
         </li>
         <li class="tl-step reveal" data-delay="1">
-          <span class="tl-num">02</span>
           <h3>Evaluate</h3>
           <p>Review location, connectivity, ownership history and documentation in detail.</p>
         </li>
         <li class="tl-step reveal" data-delay="2">
-          <span class="tl-num">03</span>
           <h3>Structure</h3>
           <p>Coordinate the acquisition / investment structure and align all stakeholders.</p>
         </li>
         <li class="tl-step reveal" data-delay="3">
-          <span class="tl-num">04</span>
           <h3>Execute</h3>
           <p>Work towards completing the transaction through a structured, transparent process.</p>
         </li>
@@ -866,22 +859,18 @@
     <p class="lede reveal" data-delay="2">Your Investment. Our Commitment. Your Future.</p>
     <div class="why-list">
       <div class="why-row reveal">
-        <span class="num">01</span>
         <h3>Secure Investment Approach</h3>
         <p>We prioritise investor security through careful land acquisition, legal verification, and a structured investment process.</p>
       </div>
       <div class="why-row reveal">
-        <span class="num">02</span>
         <h3>Transparent Processes</h3>
         <p>Clear communication, regular project updates, and transparency at every stage of the investment journey.</p>
       </div>
       <div class="why-row reveal">
-        <span class="num">03</span>
         <h3>Future-Focused Growth Corridors</h3>
         <p>We identify emerging real estate locations with infrastructure development and long-term growth potential.</p>
       </div>
       <div class="why-row reveal">
-        <span class="num">04</span>
         <h3>Thorough Due Diligence</h3>
         <p>We emphasise verification of land records, ownership, documentation, and relevant legal approvals before proceeding.</p>
       </div>
@@ -1070,7 +1059,7 @@
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <a href="#top" class="logo footer-logo" aria-label="Sripadha Infrawish home"><img src="logo.png" alt="Sripadha Infrawish" width="1520" height="464" loading="lazy"></a>
+        <a href="#top" class="logo footer-logo" aria-label="Sripadha Infrawish home"><img src="logo.png" alt="Sripadha Infrawish" width="1520" height="428" loading="lazy"></a>
         <p>Strategic land procurement through collective strength — across Bengaluru's growth corridors.</p>
       </div>
       <div>
