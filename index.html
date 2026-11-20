@@ -35,6 +35,14 @@
     "postalCode": "560066",
     "addressCountry": "IN"
   },
+  "telephone": "+91-8904196431",
+  "email": "sripadhainfrawish@gmail.com",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "telephone": "+91-8904196431",
+    "contactType": "customer service",
+    "areaServed": "IN"
+  },
   "areaServed": "Bengaluru, India"
 }
 </script>
@@ -43,7 +51,7 @@
 <link rel="preconnect" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 <style>
   /* ============ DESIGN TOKENS ============ */
@@ -73,7 +81,7 @@
     --success:#42604b;
     --warning:#8a6a3f;
     --serif:'Cormorant Garamond', Georgia, 'Times New Roman', serif;
-    --sans:'Inter','Segoe UI',Helvetica,Arial,sans-serif;
+    --sans:'Jost','Segoe UI',Helvetica,Arial,sans-serif;
     --maxw:1200px;
     --r:5px;
     --ease:cubic-bezier(.16,1,.3,1);
@@ -526,8 +534,8 @@
   .faq-item:first-child{border-top:1px solid var(--line)}
   .faq-q{
     width:100%;background:none;border:none;color:var(--ink);text-align:left;
-    padding:28px 48px 28px 4px;font-size:1.08rem;font-weight:400;position:relative;transition:.3s;line-height:1.45;
-    font-family:var(--sans);
+    padding:26px 48px 26px 4px;font-size:1.38rem;font-weight:500;position:relative;transition:.3s;line-height:1.3;
+    font-family:var(--serif);
   }
   .faq-q:hover{color:var(--accent)}
   .faq-q::after{content:"+";position:absolute;right:10px;top:50%;transform:translateY(-50%);font-family:var(--serif);font-size:1.7rem;color:var(--accent);transition:.4s var(--ease);font-weight:400}
@@ -578,10 +586,13 @@
   .footer-links a:hover::after{width:100%}
   .footer-addr{color:var(--muted-dark);font-size:.88rem;font-style:normal;line-height:1.9}
   .footer-addr b{color:var(--ink-dark);font-weight:500}
+  .footer-addr a{color:var(--ink-dark);transition:.3s}
+  .footer-addr a:hover{color:var(--accent-soft)}
   .disclaimer{color:rgba(162,151,127,.75);font-size:.72rem;padding:28px 0;border-top:1px solid var(--line-dark);line-height:1.8}
   .footer-bottom{border-top:1px solid var(--line-dark);padding:26px 0;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
   .footer-bottom p{color:rgba(162,151,127,.75);font-size:.74rem}
   .footer-bottom a{color:inherit}
+  .footer-bottom a[href*="elarvix"]{color:var(--accent-soft)}
   .footer-bottom a:hover{color:var(--ink-dark)}
   @media(max-width:980px){.footer-grid{grid-template-columns:1fr 1fr}}
   @media(max-width:600px){.footer-grid{grid-template-columns:1fr}}
@@ -911,7 +922,7 @@
             <div class="field"><label for="inv-email">Email *</label><input id="inv-email" type="email" required autocomplete="email" placeholder="you@email.com"></div>
             <div class="field"><label for="inv-city">City</label><input id="inv-city" type="text" autocomplete="address-level2" placeholder="City of residence"></div>
             <div class="field"><label for="inv-interest">Interest</label>
-              <select id="inv-interest"><option>Apartment</option><option>Villa</option><option>Villa Plots</option><option>Commercial Space</option></select>
+              <select id="inv-interest"><option>Apartment</option><option>Villa</option><option>Villa Plots</option><option>Farm Land</option><option>Commercial Space</option></select>
             </div>
             <div class="field"><label for="inv-range">Preferred Range</label>
               <select id="inv-range"><option>Up to ₹25 Lakhs</option><option>₹25 – 50 Lakhs</option><option>₹50 Lakhs – 1 Cr</option><option>₹1 Cr +</option><option>Prefer to discuss</option></select>
@@ -1081,14 +1092,15 @@
           4th Floor, Block A<br>
           Pattandur Agrahara, Whitefield<br>
           Bengaluru — 560 066<br><br>
-          Phone: <span class="cn">[Real Information Required]</span><br>
-          Email: <span class="cn">[Real Information Required]</span>
+          Phone: <a href="tel:+918904196431">+91 89041 96431</a><br>
+          WhatsApp: <a href="https://wa.me/918904196431?text=Hello%20Sripadha%20Infrawish" target="_blank" rel="noopener">+91 89041 96431</a><br>
+          Email: <a href="mailto:sripadhainfrawish@gmail.com">sripadhainfrawish@gmail.com</a>
         </address>
       </div>
     </div>
     <p class="disclaimer">Disclaimer: The content on this website is for general information only and does not constitute an offer, solicitation, investment advice or an assurance of returns. Every opportunity is subject to its own structure, documentation, terms and applicable legal and regulatory requirements. Prospective participants are advised to review all documentation and seek independent legal and financial advice before participating.</p>
     <div class="footer-bottom">
-      <p>© <span id="year"></span> Sripadha Infrawish. All rights reserved.</p>
+      <p>© <span id="year"></span> Sripadha Infrawish. All rights reserved. &nbsp;·&nbsp; Designed &amp; developed by <a href="https://elarvix.com" target="_blank" rel="noopener">Elarvix</a></p>
       <p>
         <a href="#" data-legal="privacy">Privacy Policy</a> &nbsp;·&nbsp;
         <a href="#" data-legal="terms">Terms of Use</a> &nbsp;·&nbsp;
@@ -1099,9 +1111,7 @@
 </footer>
 
 <!-- floating -->
-<!-- [REAL INFORMATION REQUIRED] Once the company WhatsApp number is available, change href to:
-     https://wa.me/<countrycode+number>?text=Hello%20Sripadha%20Infrawish -->
-<a class="float-contact" href="#invest" aria-label="Start a conversation">
+<a class="float-contact" href="https://wa.me/918904196431?text=Hello%20Sripadha%20Infrawish" target="_blank" rel="noopener" aria-label="Chat with us on WhatsApp" title="Chat with us on WhatsApp">
   <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-8.5 8.5 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.7a8.5 8.5 0 1 1 16.1-3.8z"/></svg>
 </a>
 <div class="sticky-cta">
