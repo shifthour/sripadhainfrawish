@@ -406,6 +406,19 @@
   .map-lbl{background:transparent;border:0;box-shadow:none;padding:0 0 0 2px;font-family:var(--sans);font-size:11px;font-weight:500;letter-spacing:.03em;color:#3a332a;text-shadow:0 0 3px #fff,0 0 3px #fff,0 0 3px #fff}
   .map-lbl.active{color:#1f3b6c;font-weight:700}
   .map-lbl::before{display:none}
+  .map-pin{width:30px;height:30px;border-radius:50%;background:#fff;border:2px solid currentColor;display:flex;align-items:center;justify-content:center;
+    box-shadow:0 3px 10px rgba(27,23,18,.28);transition:background .25s,color .25s,box-shadow .25s;cursor:pointer}
+  .map-pin svg{width:17px;height:17px;display:block}
+  .map-pin.apartment{color:#1f3b6c}
+  .map-pin.villa{color:#8a6a3f}
+  .leaflet-marker-icon.map-pin.active svg,.leaflet-marker-icon.map-pin:hover svg{color:#fff}
+  .leaflet-marker-icon.map-pin.apartment.active,.leaflet-marker-icon.map-pin.apartment:hover{background:#1f3b6c;border-color:#fff}
+  .leaflet-marker-icon.map-pin.villa.active,.leaflet-marker-icon.map-pin.villa:hover{background:#8a6a3f;border-color:#fff}
+  .leaflet-marker-icon.map-pin.active{box-shadow:0 0 0 4px rgba(255,255,255,.7),0 4px 14px rgba(27,23,18,.4)}
+  .map-key{background:rgba(255,255,255,.94);border:1px solid var(--line);border-radius:4px;padding:8px 12px;display:flex;gap:16px;font-size:11px;color:#3a332a;font-family:var(--sans)}
+  .map-key span{display:inline-flex;align-items:center;gap:7px}
+  .map-key .map-pin{width:22px;height:22px;box-shadow:none;border-width:1.5px;cursor:default}
+  .map-key .map-pin svg{width:13px;height:13px}
   .leaflet-control-attribution{font-size:9px;color:#8a8273;background:rgba(255,255,255,.7)}
   .loc-card{
     border:1px solid var(--line);border-radius:var(--r);padding:44px 40px;
@@ -417,6 +430,9 @@
   .loc-card p{color:var(--muted);font-size:.95rem;margin-bottom:28px}
   .loc-tags{display:flex;flex-wrap:wrap;gap:10px}
   .loc-tags span{font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;padding:8px 15px;border:1px solid var(--accent-line);border-radius:100px;color:var(--accent)}
+  .loc-tags span.type{color:#fff;font-weight:500;border-color:transparent}
+  .loc-tags span.type.apartment{background:#1f3b6c}
+  .loc-tags span.type.villa{background:#8a6a3f}
   .loc-card .btn{margin-top:34px;align-self:flex-start}
   .loc-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;justify-content:center}
   .loc-chip{
@@ -845,7 +861,7 @@
         <h3 id="locName">Whitefield – Soukya Road</h3>
         <p id="locDesc">The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has supported the acquisition of more than 30 acres here.</p>
         <div class="loc-tags" id="locTags">
-          <span>IT Hub</span><span>Hope Farm Metro</span><span>30+ Acres Supported</span>
+          <span class="type apartment">Apartments</span><span>IT Hub</span><span>Hope Farm Metro</span><span>30+ Acres Supported</span>
         </div>
         <a href="#opportunities" class="btn btn-line">Explore Opportunities <span class="ar">→</span></a>
       </div>
@@ -1246,28 +1262,28 @@ setInterval(checkReveals, 450); // safety net for embedded/odd environments
 
 /* ---------- interactive map ---------- */
 const LOCATIONS = [
-  { id:'whitefield', name:'Whitefield – Soukya Road', lat:12.9978, lng:77.7585,
+  { id:'whitefield', name:'Whitefield – Soukya Road', type:'apartment', lat:12.9978, lng:77.7585,
     desc:"The next Whitefield — close to the IT hub and Hope Farm metro station. Sripadha Infrawish has supported the acquisition of more than 30 acres here.",
     tags:['IT Hub','Hope Farm Metro','30+ Acres Supported'] },
-  { id:'siddapura', name:'Siddapura – Whitefield', lat:12.9615, lng:77.7293,
+  { id:'siddapura', name:'Siddapura – Whitefield', type:'apartment', lat:12.9615, lng:77.7293,
     desc:"Part of Whitefield — Bengaluru's Grade-A office hub, connected by metro. Supported the acquisition of 12+ acres of land, with a Joint Development Agreement (JDA) given to a Tier-1 builder.",
     tags:['Grade-A Office Hub','Metro Connected','12+ Acres · JDA'] },
-  { id:'gunjur', name:'Gunjur – 150 Feet Road', lat:12.9165, lng:77.734,
+  { id:'gunjur', name:'Gunjur – 150 Feet Road', type:'apartment', lat:12.9165, lng:77.734,
     desc:"The closest high-rise hub to the Outer Ring Road, Marathahalli and Bellandur. Involved in more than 30 acres of land acquisition.",
     tags:['ORR Proximity','High-Rise Hub','30+ Acres'] },
-  { id:'sarjapur', name:'Sarjapur', lat:12.86, lng:77.786,
+  { id:'sarjapur', name:'Sarjapur', type:'apartment', lat:12.86, lng:77.786,
     desc:"The recent growth in Sarjapur laid our foundation stone in real estate. Supported the acquisition of 10+ acres across Sarjapur, Kodathi and Kommasandra, and multiple further land acquisitions along Sarjapur Road.",
     tags:['Growth Corridor','10+ Acres Supported','Sarjapur Road'] },
-  { id:'kodathi', name:'Kodathi', lat:12.904, lng:77.706,
+  { id:'kodathi', name:'Kodathi', type:'apartment', lat:12.904, lng:77.706,
     desc:"Between the Outer Ring Road tech cluster and Sarjapur Road — twin-corridor connectivity. Part of the 10+ acre acquisition we supported across Sarjapur, Kodathi and Kommasandra.",
     tags:['Twin Corridors','ORR Access','Acquisition Supported'] },
-  { id:'kommasandra', name:'Kommasandra', lat:12.886, lng:77.745,
+  { id:'kommasandra', name:'Kommasandra', type:'apartment', lat:12.886, lng:77.745,
     desc:"Off the Sarjapur belt, within reach of key employment catchments. Part of the 10+ acre acquisition we supported across Sarjapur, Kodathi and Kommasandra.",
     tags:['Sarjapur Belt','Strategic Parcels','Acquisition Supported'] },
-  { id:'gattahalli', name:'Gattahalli', lat:12.872, lng:77.723,
+  { id:'gattahalli', name:'Gattahalli', type:'villa', lat:12.872, lng:77.723,
     desc:"A quiet pocket in South-East Bengaluru gaining relevance from its proximity to Sarjapur Road employment nodes, schools and upcoming infrastructure investments. Sripadha Infrawish has supported the acquisition of 40+ acres of land here.",
     tags:['South-East Growth','40+ Acres Supported','Infrastructure'] },
-  { id:'hoskote', name:'Hoskote', lat:13.07, lng:77.798,
+  { id:'hoskote', name:'Hoskote', type:'villa', lat:13.07, lng:77.798,
     desc:"East Bengaluru on Old Madras Road (NH-75), beyond Whitefield — one of the city's latest growth corridors. Proposals are under way to procure land here.",
     tags:['Old Madras Road','Latest Growth Corridor','Proposal Stage'] },
 ];
@@ -1284,9 +1300,19 @@ L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
   attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+/* property-type symbols for the map pins */
+const TYPE_LABEL = { apartment:'Apartments', villa:'Villas' };
+const PIN_ICONS = {
+  apartment: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 21V4.5a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1V21"/><path d="M3.5 21h17"/><path d="M9.5 7.5h1M13.5 7.5h1M9.5 11h1M13.5 11h1M9.5 14.5h1M13.5 14.5h1"/><path d="M10.75 21v-3h2.5v3"/></svg>',
+  villa: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11.5 12 4l9 7.5"/><path d="M5.5 9.8V20h13V9.8"/><path d="M10 20v-5h4v5"/><path d="M16.5 5.2V7.6"/></svg>'
+};
+
 LOCATIONS.forEach(loc => {
-  const m = L.circleMarker([loc.lat, loc.lng], { radius:7, color:'#fff', weight:2.5, fillColor:'#8a6a3f', fillOpacity:1 }).addTo(map);
-  m.bindTooltip(loc.name.split(' – ')[0], { permanent:true, direction:'right', offset:[8,0], className:'map-lbl' });
+  const m = L.marker([loc.lat, loc.lng], {
+    icon: L.divIcon({ className:'map-pin ' + loc.type, html: PIN_ICONS[loc.type], iconSize:[30,30], iconAnchor:[15,15] }),
+    title: loc.name + ' · ' + TYPE_LABEL[loc.type], keyboard:true, riseOnHover:true
+  }).addTo(map);
+  m.bindTooltip(loc.name.split(' – ')[0], { permanent:true, direction:'right', offset:[14,0], className:'map-lbl' });
   m.on('click', () => selectLocation(loc.id));
   mapMarkers[loc.id] = m;
 
@@ -1300,6 +1326,15 @@ LOCATIONS.forEach(loc => {
   chipsWrap.appendChild(chip);
 });
 
+const pinLegend = L.control({ position:'bottomleft' });
+pinLegend.onAdd = () => {
+  const d = L.DomUtil.create('div', 'map-key');
+  d.innerHTML = '<span><i class="map-pin apartment">' + PIN_ICONS.apartment + '</i>Apartments</span>' +
+                '<span><i class="map-pin villa">' + PIN_ICONS.villa + '</i>Villas</span>';
+  return d;
+};
+pinLegend.addTo(map);
+
 map.fitBounds(L.latLngBounds(LOCATIONS.map(l => [l.lat, l.lng])), { padding:[36,36] });
 map.on('click', () => map.scrollWheelZoom.enable());
 map.on('mouseout', () => map.scrollWheelZoom.disable());
@@ -1309,9 +1344,9 @@ function selectLocation(id){
   if (!loc) return;
   Object.entries(mapMarkers).forEach(([k, m]) => {
     const on = k === id;
-    m.setStyle({ fillColor: on ? '#1f3b6c' : '#8a6a3f', radius: on ? 9 : 7 });
+    const el = m.getElement(); if (el) el.classList.toggle('active', on);
     const t = m.getTooltip(); if (t && t.getElement()) t.getElement().classList.toggle('active', on);
-    if (on) m.bringToFront();
+    m.setZIndexOffset(on ? 1000 : 0);
   });
   document.querySelectorAll('.loc-chip').forEach(c => {
     const on = c.dataset.id === id;
@@ -1322,7 +1357,7 @@ function selectLocation(id){
   setTimeout(() => {
     locName.textContent = loc.name;
     locDesc.textContent = loc.desc;
-    locTags.innerHTML = loc.tags.map(t => `<span>${t}</span>`).join('');
+    locTags.innerHTML = `<span class="type ${loc.type}">${TYPE_LABEL[loc.type]}</span>` + loc.tags.map(t => `<span>${t}</span>`).join('');
     [locName, locDesc, locTags].forEach(el => { el.style.transition = 'opacity .45s'; el.style.opacity = 1; });
   }, 180);
 }
